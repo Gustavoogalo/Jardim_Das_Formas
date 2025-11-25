@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Mechanics.Selector.MVVM_Selector;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Mechanics.Selector.Selector
 {
@@ -48,7 +50,25 @@ namespace Mechanics.Selector.Selector
 
         private List<IconData> correctSequence;
         private int correctButtonIndex;
-        private List<IconData> allValidIconData; 
+        private List<IconData> allValidIconData;
+             
+        [Header("Timer Settings")]
+        [SerializeField] private float challengeDuration = 60f;
+        [SerializeField] private Slider challengeTimerSlider;
+        [Header("Score and Star Settings")]
+        [SerializeField] private StarInventory starInventory; // NOVO: Referência ao scriptable object
+        [SerializeField] private int maxStars = 3;
+        [SerializeField] private int initialScore = 100;
+        [SerializeField] private int incorrectPenalty = 20; // Pontos perdidos por resposta errada
+        [SerializeField] [Range(0, 1)] private float timeThreshold3Stars = 0.5f; // Acima de 50% do tempo restante
+
+        private float currentScore;
+        private int wrongAttempts;
+        private float timeRemaining; 
+        private bool challengeActive;
+
+        private Action<bool> OnChallengeStarted;
+        private Action<bool> OnChallengeEnded;
 
         void Awake()
         {
@@ -71,6 +91,33 @@ namespace Mechanics.Selector.Selector
                 SetupNewChallenge();
             }
         }
+
+        private void Update()
+        {
+            if (challengeActive)
+            {
+                timeRemaining -= Time.deltaTime;
+        
+                // Atualiza o slider com o tempo restante
+                if (challengeTimerSlider != null)
+                {
+                    challengeTimerSlider.value = timeRemaining / challengeDuration;
+                }
+
+                // Fim de jogo por tempo
+                if (timeRemaining <= 0)
+                {
+                    challengeActive = false;
+                    timeRemaining = 0;
+                    OnChallengeEnded?.Invoke(false); // Falso para indicar falha
+                    Debug.Log("Tempo esgotado! Tentar Novamente.");
+                    // Você deve exibir a tela de "Tente Novamente" aqui.
+                }
+            }
+        }
+
+        
+        
 
         #region Sequence Mechanic
         private IconData GetRandomValidIconData()
@@ -97,6 +144,17 @@ namespace Mechanics.Selector.Selector
             }
 
             InstantiateIcons(referencePanel, correctSequence);
+            
+            challengeActive = true;
+            timeRemaining = challengeDuration;
+            currentScore = initialScore;
+            wrongAttempts = 0;
+    
+            if (challengeTimerSlider != null)
+            {
+                challengeTimerSlider.maxValue = 1f;
+                challengeTimerSlider.value = 1f;
+            }
 
             correctButtonIndex = Random.Range(0, totalButtons);
 
@@ -245,16 +303,94 @@ namespace Mechanics.Selector.Selector
 
         private void OnAnswerSelected(int selectedButtonIndex)
         {
+            if (!challengeActive) return;
+
             if (selectedButtonIndex == correctButtonIndex)
             {
-                Debug.Log("Resposta Correta! Avance para o próximo desafio.");
+                RightAnswerSelected();
             }
             else
             {
-                Debug.Log("Resposta Incorreta. Tente novamente ou penalize o jogador.");
+                WrongAnsweerSelected();
             }
         }
+
+        private void WrongAnsweerSelected()
+        {
+            wrongAttempts++;
+            currentScore -= incorrectPenalty; // Penalidade por erro
+
+            // Se a pontuação cair muito, ou se sobrar apenas 1 botão
+            if (currentScore < 0) currentScore = 0; 
+
+            Debug.Log($"Resposta Incorreta. Penalidade de {incorrectPenalty} pontos. Pontos atuais: {currentScore}");
+        }
+
+        private void RightAnswerSelected()
+        {
+            challengeActive = false;
+    
+            // 1. Calcular Estrelas
+            int stars = CalculateStars();
+
+            // 2. Salvar no Inventário
+            if (starInventory != null)
+            {
+                starInventory.AddStars(stars);
+            }
+    
+            OnChallengeEnded?.Invoke(true); // Verdadeiro para indicar sucesso
+            Debug.Log($"Resposta Correta! Você ganhou {stars} estrela(s). Total acumulado: {starInventory.CurrentStars}");
+
+            // Você pode chamar SetupNewChallenge() aqui para o próximo nível, se for o caso.
+        }
         
+        private int CalculateStars()
+        {
+            // CÁLCULO DAS ESTRELAS
+    
+            // 1. Estrela por Tempo
+            float timeRatio = timeRemaining / challengeDuration;
+            int starsFromTime = 0;
+
+            // Se o jogador acertou acima do limite de 50% do tempo (timeThreshold3Stars)
+            if (timeRatio > timeThreshold3Stars)
+            {
+                starsFromTime = maxStars; // 3 Estrelas
+            }
+            // Para simplificar, podemos definir 2 estrelas para 25% e 1 para menos, 
+            // ou apenas usar a pontuação (Score). Usaremos o Score para a pontuação estratégica.
+
+    
+            // 2. Estrela por Pontuação (Score)
+            int starsFromScore;
+    
+            // Se o score for 100% (ou seja, 0 erros e tempo rápido)
+            if (currentScore >= initialScore)
+            {
+                starsFromScore = 3;
+            }
+            // Se houve 1 erro (100 - 20 = 80%) ou se o tempo passou um pouco
+            else if (currentScore >= initialScore * 0.5f) 
+            {
+                starsFromScore = 2;
+            }
+            // Se houve 2 erros (100 - 40 = 60%) - AQUI ESTÁ A LÓGICA DO SEU REQUISITO
+            // "se o jogador clicar em 2 respostas erradas e só sobrar a resposta correta ele só receberá 1 estrela"
+            else if (wrongAttempts >= totalButtons - 1) 
+            {
+                starsFromScore = 1;
+            }
+            else
+            {
+                starsFromScore = 0;
+            }
+    
+            // Vamos usar a estrela MÍNIMA garantida (1) e o máximo de 3.
+            // Garante no mínimo 1 estrela se o jogador acertou, a menos que ele tenha falhado totalmente no score
+            return Mathf.Max(1, starsFromScore); 
+        }
+
         private void ClearContainers()
         {
             if (referencePanel != null)
@@ -290,9 +426,11 @@ namespace Mechanics.Selector.Selector
         #endregion
         
         #region Timer And Stars Mechanic
-        #endregion
         
+        #endregion
+
         #region Events Mechanic
+
         #endregion
     }
 }
