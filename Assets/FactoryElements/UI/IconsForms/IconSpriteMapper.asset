@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f76cbca70447d5996d4c27b8537486, type: 3}
+  m_Name: IconSpriteMapper
+  m_EditorClassIdentifier: Assembly-CSharp::IconSpriteMapper
+  Mappings:
+  - Type: 0
+    Color: 1
+    Size: 0
+    IconSprite: {fileID: 7743697900996978427, guid: 9508a56a09634574e9def79f5778c117, type: 3}
+  - Type: 1
+    Color: 2
+    Size: 2
+    IconSprite: {fileID: 868142991804142998, guid: a1ce6898e1a6e6943ac44601cdde1231, type: 3}
+  - Type: 2
+    Color: 3
+    Size: 1
+    IconSprite: {fileID: 868142991804142998, guid: 93bde6edda514e64f916338e01db30a5, type: 3}
