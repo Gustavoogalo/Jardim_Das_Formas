@@ -72,6 +72,7 @@ namespace Mechanics.Selector.Selector
             }
         }
 
+        #region Sequence Mechanic
         private IconData GetRandomValidIconData()
         {
             if (allValidIconData == null || allValidIconData.Count == 0)
@@ -286,5 +287,12 @@ namespace Mechanics.Selector.Selector
                 Destroy(child);
             }
         }
+        #endregion
+        
+        #region Timer And Stars Mechanic
+        #endregion
+        
+        #region Events Mechanic
+        #endregion
     }
 }
