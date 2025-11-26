@@ -10,6 +10,8 @@ namespace UI.Configurations
         // Arraste o seu painel de UI para este campo no Inspector.
         [SerializeField] private GameObject pausePanel;
 
+        [SerializeField] private Button pauseButton;
+
         private bool isPaused = false;
 
         void Start()
@@ -21,6 +23,11 @@ namespace UI.Configurations
             }
             // Garante que o jogo esteja rodando
             Time.timeScale = 1f;
+
+            if (pauseButton != null)
+            {
+                pauseButton.onClick.AddListener(TogglePause);
+            }
         }
 
         // Método público que será chamado pelo botão
@@ -55,10 +62,10 @@ namespace UI.Configurations
         // Opcional: Adiciona a funcionalidade de pausar/despausar com a tecla ESC
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                TogglePause();
-            }
+            // if (Input.GetKeyDown(KeyCode.Escape))
+            // {
+            //     TogglePause();
+            // }
         }
     }
 }
