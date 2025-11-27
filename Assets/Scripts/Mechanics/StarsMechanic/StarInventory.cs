@@ -23,6 +23,7 @@ public class StarInventory : ScriptableObject
     }
 
     // Método para limpar o inventário (solicitado)
+    [ContextMenu( "Clear Stars" )]
     public void ClearStars()
     {
         CurrentStars = 0;

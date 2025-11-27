@@ -25,6 +25,7 @@ public class Juycenessbuttons : MonoBehaviour, ISelectHandler, IPointerEnterHand
     private Coroutine activeCoroutine;
     private bool isHovering = false;
     private ChildState[] childrenStates;
+    private bool statesInitialized = false;
 
     void Awake()
     {
@@ -35,6 +36,36 @@ public class Juycenessbuttons : MonoBehaviour, ISelectHandler, IPointerEnterHand
 
         initialScale = transform.localScale;
         initialPosition = transform.localPosition;
+    }
+    
+    private void InitializeChildrenStates()
+    {
+        if (statesInitialized) return;
+
+        Transform[] allChildren = GetComponentsInChildren<Transform>(true);
+        Transform[] tempChildren;
+        
+        if (allChildren.Length > 0)
+        {
+            tempChildren = new Transform[allChildren.Length - 1];
+            System.Array.Copy(allChildren, 1, tempChildren, 0, allChildren.Length - 1);
+        }
+        else
+        {
+            tempChildren = new Transform[0];
+        }
+
+        childrenStates = new ChildState[tempChildren.Length];
+        for (int i = 0; i < tempChildren.Length; i++)
+        {
+            childrenStates[i] = new ChildState
+            {
+                transform = tempChildren[i],
+                initialScale = tempChildren[i].localScale,
+                initialPosition = tempChildren[i].localPosition
+            };
+        }
+        statesInitialized = true;
     }
 
     private void Animate(bool enter)
@@ -48,27 +79,19 @@ public class Juycenessbuttons : MonoBehaviour, ISelectHandler, IPointerEnterHand
 
         if (enter)
         {
-            Transform[] allChildren = GetComponentsInChildren<Transform>(true);
-            Transform[] tempChildren;
-            if (allChildren.Length > 0)
-            {
-                tempChildren = new Transform[allChildren.Length - 1];
-                System.Array.Copy(allChildren, 1, tempChildren, 0, allChildren.Length - 1);
-            }
-            else
-            {
-                tempChildren = new Transform[0];
-            }
+            InitializeChildrenStates();
 
-            childrenStates = new ChildState[tempChildren.Length];
-            for (int i = 0; i < tempChildren.Length; i++)
+            transform.localScale = initialScale;
+            transform.localPosition = initialPosition;
+            
+            if (isChallengeSelector && childrenStates != null)
             {
-                childrenStates[i] = new ChildState
+                foreach (var state in childrenStates)
                 {
-                    transform = tempChildren[i],
-                    initialScale = tempChildren[i].localScale,
-                    initialPosition = tempChildren[i].localPosition
-                };
+                    if (state.transform == null) continue;
+                    state.transform.localScale = state.initialScale;
+                    state.transform.localPosition = state.initialPosition;
+                }
             }
 
             activeCoroutine = StartCoroutine(DoEnterAnimation());
@@ -128,7 +151,6 @@ public class Juycenessbuttons : MonoBehaviour, ISelectHandler, IPointerEnterHand
             foreach (var state in childrenStates)
             {
                 if (state.transform == null) continue;
-
                 StartCoroutine(LerpTransform(state.transform, state.initialScale, state.initialPosition, animationDuration));
             }
 
@@ -137,6 +159,16 @@ public class Juycenessbuttons : MonoBehaviour, ISelectHandler, IPointerEnterHand
 
         transform.localScale = initialScale;
         transform.localPosition = initialPosition;
+        
+        if (isChallengeSelector && childrenStates != null)
+        {
+            foreach (var state in childrenStates)
+            {
+                if (state.transform == null) continue;
+                state.transform.localScale = state.initialScale;
+                state.transform.localPosition = state.initialPosition;
+            }
+        }
 
         if (layoutGroupToDisable != null)
         {

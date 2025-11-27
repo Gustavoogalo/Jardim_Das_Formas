@@ -30,8 +30,8 @@ namespace Mechanics.Selector.Selector
 
     public class ChallengeSelector : MonoBehaviour
     {
-        [Header("Sprite Mapping")]
-        [SerializeField] private IconSpriteMapper spriteMapper;
+        [Header("Sprite Mapping")] [SerializeField]
+        private IconSpriteMapper spriteMapper;
 
         [Header("Prefabs")] [SerializeField] private FormIconView iconPrefab;
         [SerializeField] private Button answerButtonPrefab;
@@ -51,20 +51,26 @@ namespace Mechanics.Selector.Selector
         private List<IconData> correctSequence;
         private int correctButtonIndex;
         private List<IconData> allValidIconData;
-             
-        [Header("Timer Settings")]
-        [SerializeField] private float challengeDuration = 60f;
+
+        [Header("Timer Settings")] [SerializeField]
+        private float challengeDuration = 60f;
+
         [SerializeField] private Slider challengeTimerSlider;
-        [Header("Score and Star Settings")]
-        [SerializeField] private StarInventory starInventory; // NOVO: Referência ao scriptable object
+
+        [Header("Score and Star Settings")] [SerializeField]
+        private StarInventory starInventory; // NOVO: Referência ao scriptable object
+
         [SerializeField] private int maxStars = 3;
         [SerializeField] private int initialScore = 100;
         [SerializeField] private int incorrectPenalty = 20; // Pontos perdidos por resposta errada
         [SerializeField] [Range(0, 1)] private float timeThreshold3Stars = 0.5f; // Acima de 50% do tempo restante
 
+        [Header("Dependências")] [SerializeField]
+        private RewardScreenManager rewardManager;
+
         private float currentScore;
         private int wrongAttempts;
-        private float timeRemaining; 
+        private float timeRemaining;
         private bool challengeActive;
 
         private Action<bool> OnChallengeStarted;
@@ -74,22 +80,20 @@ namespace Mechanics.Selector.Selector
         {
             if (spriteMapper != null)
             {
-                allValidIconData = spriteMapper.GetAllValidIconData(); 
+                allValidIconData = spriteMapper.GetAllValidIconData();
             }
-            
+
             if (allValidIconData == null || allValidIconData.Count == 0)
             {
-                Debug.LogError("SpriteMapper não forneceu nenhuma combinação IconData válida. Desativando ChallengeSelector.");
+                Debug.LogError(
+                    "SpriteMapper não forneceu nenhuma combinação IconData válida. Desativando ChallengeSelector.");
                 enabled = false;
             }
         }
 
-        void Start()
+        private void Start()
         {
-            if (enabled)
-            {
-                SetupNewChallenge();
-            }
+            //SetupNewChallenge();
         }
 
         private void Update()
@@ -97,36 +101,32 @@ namespace Mechanics.Selector.Selector
             if (challengeActive)
             {
                 timeRemaining -= Time.deltaTime;
-        
-                // Atualiza o slider com o tempo restante
+
                 if (challengeTimerSlider != null)
                 {
                     challengeTimerSlider.value = timeRemaining / challengeDuration;
                 }
 
-                // Fim de jogo por tempo
                 if (timeRemaining <= 0)
                 {
                     challengeActive = false;
                     timeRemaining = 0;
                     OnChallengeEnded?.Invoke(false); // Falso para indicar falha
                     Debug.Log("Tempo esgotado! Tentar Novamente.");
-                    // Você deve exibir a tela de "Tente Novamente" aqui.
                 }
             }
         }
 
-        
-        
 
         #region Sequence Mechanic
+
         private IconData GetRandomValidIconData()
         {
             if (allValidIconData == null || allValidIconData.Count == 0)
             {
                 return null;
             }
-            
+
             int randomIndex = Random.Range(0, allValidIconData.Count);
             IconData original = allValidIconData[randomIndex];
             return new IconData(original.Type, original.Color, original.Size);
@@ -144,12 +144,12 @@ namespace Mechanics.Selector.Selector
             }
 
             InstantiateIcons(referencePanel, correctSequence);
-            
+
             challengeActive = true;
             timeRemaining = challengeDuration;
             currentScore = initialScore;
             wrongAttempts = 0;
-    
+
             if (challengeTimerSlider != null)
             {
                 challengeTimerSlider.maxValue = 1f;
@@ -165,7 +165,7 @@ namespace Mechanics.Selector.Selector
                     Debug.LogError($"Container para o botão {i} está faltando.");
                     continue;
                 }
-                
+
                 Transform buttonContainer = answerButtonContainers[i];
 
                 List<IconData> answerSequence;
@@ -210,6 +210,7 @@ namespace Mechanics.Selector.Selector
                     answer.Add(GetRandomValidIconData());
                 }
             }
+
             return answer;
         }
 
@@ -281,13 +282,14 @@ namespace Mechanics.Selector.Selector
                     return true;
                 }
             }
+
             return false;
         }
-        
+
         private void InstantiateIcons(Transform parent, List<IconData> sequence)
         {
             if (parent == null) return;
-            
+
             foreach (Transform child in parent)
             {
                 Destroy(child.gameObject);
@@ -321,7 +323,7 @@ namespace Mechanics.Selector.Selector
             currentScore -= incorrectPenalty; // Penalidade por erro
 
             // Se a pontuação cair muito, ou se sobrar apenas 1 botão
-            if (currentScore < 0) currentScore = 0; 
+            if (currentScore < 0) currentScore = 0;
 
             Debug.Log($"Resposta Incorreta. Penalidade de {incorrectPenalty} pontos. Pontos atuais: {currentScore}");
         }
@@ -329,55 +331,62 @@ namespace Mechanics.Selector.Selector
         private void RightAnswerSelected()
         {
             challengeActive = false;
-    
+
             // 1. Calcular Estrelas
             int stars = CalculateStars();
 
-            // 2. Salvar no Inventário
+            // 2. Salvar no Inventário e Disparar Evento
             if (starInventory != null)
             {
                 starInventory.AddStars(stars);
+                // O evento Game_Events.ChallengeCompleted(stars) faz o FarmManager plantar!
+                Game_Events.ChallengeCompleted(stars);
             }
-    
-            OnChallengeEnded?.Invoke(true); // Verdadeiro para indicar sucesso
-            Debug.Log($"Resposta Correta! Você ganhou {stars} estrela(s). Total acumulado: {starInventory.CurrentStars}");
 
-            // Você pode chamar SetupNewChallenge() aqui para o próximo nível, se for o caso.
+            // 3. 🖼️ CHAMAR A TELA DE REWARDS
+            if (rewardManager != null)
+            {
+                // Passa as estrelas ganhas e a referência DESTA TELA (o Challenge Selector)
+                // para que a tela de Rewards possa fechar ambas depois.
+                rewardManager.gameObject.SetActive(true);
+                rewardManager.ShowRewards(stars, gameObject);
+            }
+            else
+            {
+                OnChallengeEnded?.Invoke(true);
+
+                // SetupNewChallenge(); 
+            }
+
+            Debug.Log(
+                $"Resposta Correta! Você ganhou {stars} estrela(s). Total acumulado: {starInventory.CurrentStars}");
         }
-        
+
         private int CalculateStars()
         {
-            // CÁLCULO DAS ESTRELAS
-    
-            // 1. Estrela por Tempo
             float timeRatio = timeRemaining / challengeDuration;
             int starsFromTime = 0;
 
-            // Se o jogador acertou acima do limite de 50% do tempo (timeThreshold3Stars)
+
             if (timeRatio > timeThreshold3Stars)
             {
-                starsFromTime = maxStars; // 3 Estrelas
+                starsFromTime = maxStars;
             }
-            // Para simplificar, podemos definir 2 estrelas para 25% e 1 para menos, 
-            // ou apenas usar a pontuação (Score). Usaremos o Score para a pontuação estratégica.
 
-    
-            // 2. Estrela por Pontuação (Score)
             int starsFromScore;
-    
-            // Se o score for 100% (ou seja, 0 erros e tempo rápido)
+
+
             if (currentScore >= initialScore)
             {
                 starsFromScore = 3;
             }
-            // Se houve 1 erro (100 - 20 = 80%) ou se o tempo passou um pouco
-            else if (currentScore >= initialScore * 0.5f) 
+
+            else if (currentScore >= initialScore * 0.5f)
             {
                 starsFromScore = 2;
             }
-            // Se houve 2 erros (100 - 40 = 60%) - AQUI ESTÁ A LÓGICA DO SEU REQUISITO
-            // "se o jogador clicar em 2 respostas erradas e só sobrar a resposta correta ele só receberá 1 estrela"
-            else if (wrongAttempts >= totalButtons - 1) 
+
+            else if (wrongAttempts >= totalButtons - 1)
             {
                 starsFromScore = 1;
             }
@@ -385,10 +394,8 @@ namespace Mechanics.Selector.Selector
             {
                 starsFromScore = 0;
             }
-    
-            // Vamos usar a estrela MÍNIMA garantida (1) e o máximo de 3.
-            // Garante no mínimo 1 estrela se o jogador acertou, a menos que ele tenha falhado totalmente no score
-            return Mathf.Max(1, starsFromScore); 
+
+            return Mathf.Max(1, starsFromScore);
         }
 
         private void ClearContainers()
@@ -397,7 +404,7 @@ namespace Mechanics.Selector.Selector
             {
                 ClearChildren(referencePanel);
             }
-    
+
             if (answerButtonContainers != null)
             {
                 foreach (var container in answerButtonContainers)
@@ -423,10 +430,11 @@ namespace Mechanics.Selector.Selector
                 Destroy(child);
             }
         }
+
         #endregion
-        
+
         #region Timer And Stars Mechanic
-        
+
         #endregion
 
         #region Events Mechanic
