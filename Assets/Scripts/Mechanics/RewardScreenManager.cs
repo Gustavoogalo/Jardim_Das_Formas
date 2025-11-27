@@ -55,7 +55,6 @@ public class RewardScreenManager : MonoBehaviour
            
         }
         
-        
         //Game_Events.ChallengeCompleted(starsGained);
     }
     

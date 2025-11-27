@@ -3,6 +3,9 @@ using System.Collections.Generic; // Necessário para List<T>
 
 public class FarmManager : MonoBehaviour
 {
+    [Header("Id Reference")] [SerializeField] private int farmId;
+    [SerializeField] private int requiredStars = 9; 
+
     [Header("Planting Settings")]
     [Tooltip("Todos os GameObjects vazios que representam os locais de plantio.")]
     public Transform[] plantingSlots; 
@@ -16,11 +19,20 @@ public class FarmManager : MonoBehaviour
 
     private Plant_Controller[] plantedPlants; // Armazena as referências das plantas instanciadas
 
+    [SerializeField] private Animator CadeadoAnimator;
+
+    public bool unlocked;
     void Awake()
     {
    
         plantedPlants = new Plant_Controller[plantingSlots.Length];
     }
+    
+    public int GetFarmId() => farmId;
+    public int GetRequiredStars() => requiredStars;
+    
+    
+    
     public void PlaceNewPlant(int slotIndex, int starsGained)
     {
        
@@ -29,9 +41,8 @@ public class FarmManager : MonoBehaviour
             return;
         }
         
-        // 1. Instanciar
         Transform slot = plantingSlots[slotIndex];
-        // Instancia a planta como filha do slot para herdar a posição e manter a organização
+        
         GameObject newPlantObject = Instantiate(plantPrefab, slot.position, Quaternion.identity, slot);
         Plant_Controller plantController = newPlantObject.GetComponent<Plant_Controller>();
 
@@ -42,10 +53,9 @@ public class FarmManager : MonoBehaviour
             return;
         }
         
-        // 2. Controlar a Profundidade (Sorting Order)
+       
         ApplyDepthSorting(newPlantObject, slotIndex);
 
-        // 3. Armazenar e Iniciar
         plantedPlants[slotIndex] = plantController;
         plantController.StartGrowing();
         
@@ -53,9 +63,7 @@ public class FarmManager : MonoBehaviour
         //plantController.SavePlantState(slotIndex); 
     }
 
-    // --- LÓGICA DE CARREGAMENTO (NOVO) ---
     
-    // Método CHAVE chamado pelo SaveLoadManager ao iniciar o jogo
     public void ProcessLoadedPlants(List<PlantData> loadedPlantsData)
     {
         foreach (PlantData data in loadedPlantsData)
@@ -80,20 +88,20 @@ public class FarmManager : MonoBehaviour
                  continue;
             }
 
-            // 2. Controlar a Profundidade (Sorting Order)
+           
             ApplyDepthSorting(newPlantObject, slotIndex);
 
             // 3. Restaurar o estado (crescimento offline)
            // plantController.RestorePlantState(data);
             
-            // 4. Armazenar a referência
+           
             plantedPlants[slotIndex] = plantController;
         }
 
         Debug.Log($"Carregamento concluído. {loadedPlantsData.Count} plantas restauradas.");
     }
     
-    // --- LÓGICA DE RECOMPENSA E AUXILIARES ---
+  
 
     private int FindFirstEmptySlot()
     {
@@ -123,6 +131,7 @@ public class FarmManager : MonoBehaviour
 
     public void HandleStarReward(int starsGained)
     {
+        if (!unlocked) return;
         Debug.Log($"Evento Game_Events recebido: {starsGained} estrelas. Tentando plantar uma planta para cada estrela.");
 
         for (int star = 0; star < starsGained; star++)
@@ -156,4 +165,11 @@ public class FarmManager : MonoBehaviour
     }
     
     // (A classe ChallengeTester pode permanecer separada ou ser integrada, dependendo da sua preferência)
+    public void UnlockFarm()
+    {
+        unlocked = true;
+        CadeadoAnimator.Play("Unlocked");
+        //TODO:
+        //som de Unlock
+    }
 }

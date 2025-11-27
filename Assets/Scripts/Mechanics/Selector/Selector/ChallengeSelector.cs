@@ -46,7 +46,7 @@ namespace Mechanics.Selector.Selector
 
         [SerializeField] private int maxReferenceIcons = 4;
         [SerializeField] private int answerIconCount = 5;
-        [SerializeField] private int totalButtons = 4;
+        [SerializeField] private int totalButtons = 3;
 
         private List<IconData> correctSequence;
         private int correctButtonIndex;
@@ -76,6 +76,11 @@ namespace Mechanics.Selector.Selector
         private Action<bool> OnChallengeStarted;
         private Action<bool> OnChallengeEnded;
 
+        private void OnEnable()
+        {
+            SetupNewChallenge();
+        }
+
         void Awake()
         {
             if (spriteMapper != null)
@@ -89,11 +94,6 @@ namespace Mechanics.Selector.Selector
                     "SpriteMapper não forneceu nenhuma combinação IconData válida. Desativando ChallengeSelector.");
                 enabled = false;
             }
-        }
-
-        private void Start()
-        {
-            //SetupNewChallenge();
         }
 
         private void Update()
@@ -320,10 +320,12 @@ namespace Mechanics.Selector.Selector
         private void WrongAnsweerSelected()
         {
             wrongAttempts++;
+
             currentScore -= incorrectPenalty; // Penalidade por erro
 
             // Se a pontuação cair muito, ou se sobrar apenas 1 botão
             if (currentScore < 0) currentScore = 0;
+
 
             Debug.Log($"Resposta Incorreta. Penalidade de {incorrectPenalty} pontos. Pontos atuais: {currentScore}");
         }
@@ -386,7 +388,7 @@ namespace Mechanics.Selector.Selector
                 starsFromScore = 2;
             }
 
-            else if (wrongAttempts >= totalButtons - 1)
+            else if (wrongAttempts >= totalButtons / 2)
             {
                 starsFromScore = 1;
             }

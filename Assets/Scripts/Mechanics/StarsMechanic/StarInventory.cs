@@ -5,8 +5,6 @@ using System;
 public class StarInventory : ScriptableObject
 {
     private const string StarKey = "PlayerStars";
-
-    // Acessível em runtime
     public int CurrentStars { get; private set; }
 
     // Chamado no Awake do ChallengeSelector ou de um Game Manager para carregar o estado
