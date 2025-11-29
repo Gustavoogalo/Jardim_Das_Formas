@@ -1,9 +1,11 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Mechanics.Selector.MVVM_Selector;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
 namespace Mechanics.Selector.Selector
@@ -20,6 +22,15 @@ namespace Mechanics.Selector.Selector
             Type = type;
             Color = color;
             Size = size;
+        }
+
+        public bool IsEqual(IconData other, bool checkType, bool checkColor, bool checkSize)
+        {
+            bool typeMatch = !checkType || (Type == other.Type);
+            bool colorMatch = !checkColor || (Color == other.Color);
+            bool sizeMatch = !checkSize || (Size == other.Size);
+
+            return typeMatch && colorMatch && sizeMatch;
         }
 
         public bool IsEqual(IconData other)
@@ -58,12 +69,12 @@ namespace Mechanics.Selector.Selector
         [SerializeField] private Slider challengeTimerSlider;
 
         [Header("Score and Star Settings")] [SerializeField]
-        private StarInventory starInventory; // NOVO: Referência ao scriptable object
+        private StarInventory starInventory;
 
         [SerializeField] private int maxStars = 3;
         [SerializeField] private int initialScore = 100;
-        [SerializeField] private int incorrectPenalty = 20; // Pontos perdidos por resposta errada
-        [SerializeField] [Range(0, 1)] private float timeThreshold3Stars = 0.5f; // Acima de 50% do tempo restante
+        [SerializeField] private int incorrectPenalty = 20;
+        [SerializeField] [Range(0, 1)] private float timeThreshold3Stars = 0.5f;
 
         [Header("Dependências")] [SerializeField]
         private RewardScreenManager rewardManager;
@@ -73,9 +84,27 @@ namespace Mechanics.Selector.Selector
         private float timeRemaining;
         private bool challengeActive;
 
+        public bool isType;
+        public bool isColor;
+        public bool isSize;
+        
+        private (bool type, bool color, bool size) ChallengeCriteria => (isType, isColor, isSize);
+        
         private Action<bool> OnChallengeStarted;
         private Action<bool> OnChallengeEnded;
-
+        
+        public void SetChallengeCriteriaAndStart(bool type, bool color, bool size)
+        {
+            this.isType = type;
+            this.isColor = color;
+            this.isSize = size;
+            
+            // Chama o Setup para garantir que o pool de IconData (allValidIconData)
+            // seja filtrado corretamente e o desafio comece.
+            SetupNewChallenge();
+        }
+        
+        
         private void OnEnable()
         {
             SetupNewChallenge();
@@ -83,15 +112,9 @@ namespace Mechanics.Selector.Selector
 
         void Awake()
         {
-            if (spriteMapper != null)
+            if (spriteMapper == null)
             {
-                allValidIconData = spriteMapper.GetAllValidIconData();
-            }
-
-            if (allValidIconData == null || allValidIconData.Count == 0)
-            {
-                Debug.LogError(
-                    "SpriteMapper não forneceu nenhuma combinação IconData válida. Desativando ChallengeSelector.");
+                Debug.LogError("SpriteMapper não atribuído.");
                 enabled = false;
             }
         }
@@ -111,13 +134,12 @@ namespace Mechanics.Selector.Selector
                 {
                     challengeActive = false;
                     timeRemaining = 0;
-                    OnChallengeEnded?.Invoke(false); // Falso para indicar falha
+                    OnChallengeEnded?.Invoke(false);
                     Debug.Log("Tempo esgotado! Tentar Novamente.");
                 }
             }
         }
-
-
+        
         #region Sequence Mechanic
 
         private IconData GetRandomValidIconData()
@@ -134,6 +156,18 @@ namespace Mechanics.Selector.Selector
 
         public void SetupNewChallenge()
         {
+            if (spriteMapper != null)
+            {
+                allValidIconData = spriteMapper.GetAllValidIconData(isType, isColor, isSize);
+            }
+            
+            if (allValidIconData == null || allValidIconData.Count == 0)
+            {
+                Debug.LogError(
+                    "SpriteMapper não forneceu nenhuma combinação IconData válida. Verifique as configurações e os booleanos.");
+                return;
+            }
+
             ClearContainers();
 
             int referenceCount = Random.Range(minReferenceIcons, maxReferenceIcons + 1);
@@ -219,6 +253,7 @@ namespace Mechanics.Selector.Selector
             List<IconData> answer;
             bool isCorrect;
             int maxAttempts = 100;
+            var (checkType, checkColor, checkSize) = ChallengeCriteria;
 
             do
             {
@@ -237,22 +272,29 @@ namespace Mechanics.Selector.Selector
             {
                 for (int i = 0; i <= totalIcons - correctRef.Count; i++)
                 {
-                    bool match = true;
-                    for (int j = 0; j < correctRef.Count; j++)
+                    if (CheckIfSequenceContainsCorrectRef(answer.GetRange(i, correctRef.Count), correctRef))
                     {
-                        if (!answer[i + j].IsEqual(correctRef[j]))
+                        if (checkType)
                         {
-                            match = false;
-                            break;
+                            IconType originalType = answer[i].Type;
+                            IconType newType =
+                                (IconType)(((int)originalType + 1) % System.Enum.GetValues(typeof(IconType)).Length);
+                            answer[i].Type = newType;
                         }
-                    }
-
-                    if (match)
-                    {
-                        IconType originalType = answer[i].Type;
-                        IconType newType =
-                            (IconType)(((int)originalType + 1) % System.Enum.GetValues(typeof(IconType)).Length);
-                        answer[i].Type = newType;
+                        else if (checkColor)
+                        {
+                            IconColor originalColor = answer[i].Color;
+                            IconColor newColor =
+                                (IconColor)(((int)originalColor + 1) % System.Enum.GetValues(typeof(IconColor)).Length);
+                            answer[i].Color = newColor;
+                        }
+                        else if (checkSize)
+                        {
+                            IconSize originalSize = answer[i].Size;
+                            IconSize newSize =
+                                (IconSize)(((int)originalSize + 1) % System.Enum.GetValues(typeof(IconSize)).Length);
+                            answer[i].Size = newSize;
+                        }
                         break;
                     }
                 }
@@ -264,13 +306,15 @@ namespace Mechanics.Selector.Selector
         private bool CheckIfSequenceContainsCorrectRef(List<IconData> answerSequence, List<IconData> correctRef)
         {
             if (answerSequence.Count < correctRef.Count) return false;
+            
+            var (checkType, checkColor, checkSize) = ChallengeCriteria;
 
             for (int i = 0; i <= answerSequence.Count - correctRef.Count; i++)
             {
                 bool match = true;
                 for (int j = 0; j < correctRef.Count; j++)
                 {
-                    if (!answerSequence[i + j].IsEqual(correctRef[j]))
+                    if (!answerSequence[i + j].IsEqual(correctRef[j], checkType, checkColor, checkSize))
                     {
                         match = false;
                         break;
@@ -321,9 +365,8 @@ namespace Mechanics.Selector.Selector
         {
             wrongAttempts++;
 
-            currentScore -= incorrectPenalty; // Penalidade por erro
+            currentScore -= incorrectPenalty;
 
-            // Se a pontuação cair muito, ou se sobrar apenas 1 botão
             if (currentScore < 0) currentScore = 0;
 
 
@@ -334,30 +377,22 @@ namespace Mechanics.Selector.Selector
         {
             challengeActive = false;
 
-            // 1. Calcular Estrelas
             int stars = CalculateStars();
 
-            // 2. Salvar no Inventário e Disparar Evento
             if (starInventory != null)
             {
                 starInventory.AddStars(stars);
-                // O evento Game_Events.ChallengeCompleted(stars) faz o FarmManager plantar!
                 Game_Events.ChallengeCompleted(stars);
             }
 
-            // 3. 🖼️ CHAMAR A TELA DE REWARDS
             if (rewardManager != null)
             {
-                // Passa as estrelas ganhas e a referência DESTA TELA (o Challenge Selector)
-                // para que a tela de Rewards possa fechar ambas depois.
                 rewardManager.gameObject.SetActive(true);
                 rewardManager.ShowRewards(stars, gameObject);
             }
             else
             {
                 OnChallengeEnded?.Invoke(true);
-
-                // SetupNewChallenge(); 
             }
 
             Debug.Log(
@@ -367,27 +402,16 @@ namespace Mechanics.Selector.Selector
         private int CalculateStars()
         {
             float timeRatio = timeRemaining / challengeDuration;
-            int starsFromTime = 0;
-
-
-            if (timeRatio > timeThreshold3Stars)
-            {
-                starsFromTime = maxStars;
-            }
-
             int starsFromScore;
-
 
             if (currentScore >= initialScore)
             {
                 starsFromScore = 3;
             }
-
             else if (currentScore >= initialScore * 0.5f)
             {
                 starsFromScore = 2;
             }
-
             else if (wrongAttempts >= totalButtons / 2)
             {
                 starsFromScore = 1;
@@ -397,7 +421,14 @@ namespace Mechanics.Selector.Selector
                 starsFromScore = 0;
             }
 
-            return Mathf.Max(1, starsFromScore);
+            int finalStars = Mathf.Max(1, starsFromScore);
+
+            if (finalStars == maxStars && timeRatio < timeThreshold3Stars)
+            {
+                finalStars = Mathf.Max(1, maxStars - 1);
+            }
+
+            return finalStars;
         }
 
         private void ClearContainers()

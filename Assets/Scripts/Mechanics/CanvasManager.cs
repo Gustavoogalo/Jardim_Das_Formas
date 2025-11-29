@@ -9,41 +9,78 @@ namespace Mechanics
 {
     public class CanvasManager : MonoBehaviour
     {
-        [Header("Level Up")]
-        [SerializeField] private LevelManager levelManager;
+        [Header("Level Up")] [SerializeField] private LevelManager levelManager;
         [SerializeField] private JuycenessPanel levelUpPanel;
 
         [SerializeField] private Button levelUpButton;
         [SerializeField] private FarmManager[] farmManager;
-        //evento de som
-        
-        
-        
-        
-        [Header("Challenge01 Part")]
-        [SerializeField] private Button ChallengeButton;
 
-        [SerializeField] private JuycenessPanel _challengeSelector;
+
+        [Header("Challenge Part")] [SerializeField]
+        private Button ChallengeButtonType; // NOVO: Botão para desafio de Tipo
+        [SerializeField] private Button ChallengeButtonColor; // NOVO: Botão para desafio de Cor
+        [SerializeField] private Button ChallengeButtonSize; // NOVO: Botão para desafio de Tamanho
+
+        [SerializeField] private Button ChallengeButton04; // NOVO: Botão para desafio de Tipo
+        [SerializeField] private Button ChallengeButton05; // NOVO: Botão para desafio de Cor
+        [SerializeField] private Button ChallengeButton06; // NOVO: Botão para desafio de Tamanho
         
+        [SerializeField] private JuycenessPanel _challengePanel; // Renomeado para maior clareza
+
+        // 🚨 NOVO: Referência direta ao ChallengeSelector
+        private ChallengeSelector _challengeSelectorComponent;
+
         private void Start()
         {
             levelManager.OnLevelUp += UpperLevelUpPanel;
-            if(Game_Events.GetCurrentFarm() == null) SetNewCurrentFarm();
-            ChallengeButton.onClick.AddListener(InitializeChallengeSelector);
+            if (Game_Events.GetCurrentFarm() == null) SetNewCurrentFarm();
+
+            _challengeSelectorComponent = _challengePanel.GetComponentInChildren<ChallengeSelector>(true);
+
+            if (_challengeSelectorComponent != null)
+            {
+                ChallengeButtonType.onClick.AddListener(() =>
+                    VerifyUnlocked(ChallengeButtonType.GetComponent<FarmManager>(), true, false, false));
+                ChallengeButtonColor.onClick.AddListener(() => VerifyUnlocked(ChallengeButtonColor.GetComponent<FarmManager>(),false, true, false));
+                ChallengeButtonSize.onClick.AddListener(() => VerifyUnlocked(ChallengeButtonSize.GetComponent<FarmManager>(),false, false, true));
+
+                ChallengeButton04.onClick.AddListener(() =>
+                    VerifyUnlocked(ChallengeButton04.GetComponent<FarmManager>(), true, false, false));
+                ChallengeButton05.onClick.AddListener(() => VerifyUnlocked(ChallengeButton05.GetComponent<FarmManager>(),false, true, false));
+                ChallengeButton06.onClick.AddListener(() => VerifyUnlocked(ChallengeButton06.GetComponent<FarmManager>(),false, false, true));
+
+            }
+            else
+            {
+                Debug.LogError("ChallengeSelector Componente não encontrado no painel de desafio.");
+            }
+
             levelUpPanel.GetCloserButton().onClick.AddListener(CloseLevelUpPanel);
         }
 
-        private void InitializeChallengeSelector()
+        private void VerifyUnlocked(FarmManager farm, bool isType, bool isColor, bool isSize)
         {
-            //_challengeSelector.gameObject.SetActive(true);
-            _challengeSelector.OpenPanel();
-                //_challengeSelector.SetupNewChallenge();
+            if (farm.unlocked)
+            {
+                InitializeChallenge(isType, isColor, isSize);
+            }
+        }
+
+        private void InitializeChallenge(bool isType, bool isColor, bool isSize)
+        {
+            if (_challengeSelectorComponent != null)
+            {
+                // Define os booleanos no ChallengeSelector e inicia o SetupNewChallenge()
+                _challengeSelectorComponent.SetChallengeCriteriaAndStart(isType, isColor, isSize);
+
+                // Abre o painel (JuycenessPanel)
+                _challengePanel.OpenPanel();
+            }
         }
 
         private void UpperLevelUpPanel()
         {
             levelUpPanel.gameObject.SetActive(true);
-            //evento do som
             levelUpPanel.OpenPanel();
         }
 
@@ -61,7 +98,7 @@ namespace Mechanics
                 if (farm.GetFarmId() == levelManager.GetCurrentLevel())
                 {
                     Game_Events.SetCurrentFarm(farm);
-                    if(!farm.unlocked) farm.UnlockFarm();
+                    if (!farm.unlocked) farm.UnlockFarm();
                 }
             }
         }

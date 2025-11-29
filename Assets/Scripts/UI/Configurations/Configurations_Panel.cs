@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI.Configurations
@@ -11,6 +12,7 @@ namespace UI.Configurations
         [SerializeField] private GameObject pausePanel;
 
         [SerializeField] private Button pauseButton;
+        [SerializeField] private Button ToMenuButton;
 
         private bool isPaused = false;
 
@@ -21,13 +23,16 @@ namespace UI.Configurations
             {
                 pausePanel.SetActive(false);
             }
+
             // Garante que o jogo esteja rodando
             Time.timeScale = 1f;
 
             if (pauseButton != null)
             {
-                pauseButton.onClick.AddListener(TogglePause);
             }
+
+            pauseButton.onClick.AddListener(TogglePause);
+            ToMenuButton.onClick.AddListener(BackToMenu);
         }
 
         // Método público que será chamado pelo botão
@@ -39,7 +44,7 @@ namespace UI.Configurations
             {
                 // Pausa o jogo (Time.timeScale = 0f)
                 Time.timeScale = 0f;
-                
+
                 // Mostra o painel de UI
                 if (pausePanel != null)
                 {
@@ -50,13 +55,18 @@ namespace UI.Configurations
             {
                 // Despausa o jogo (Time.timeScale = 1f)
                 Time.timeScale = 1f;
-                
+
                 // Esconde o painel de UI
                 if (pausePanel != null)
                 {
                     pausePanel.SetActive(false);
                 }
             }
+        }
+
+        public void BackToMenu()
+        {
+            SceneManager.LoadScene(0);
         }
 
         // Opcional: Adiciona a funcionalidade de pausar/despausar com a tecla ESC

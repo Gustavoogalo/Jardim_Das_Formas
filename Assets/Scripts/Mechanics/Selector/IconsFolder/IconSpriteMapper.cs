@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Mechanics.Selector.MVVM_Selector;
-using Mechanics.Selector.Selector; // Para acessar IconData
+using Mechanics.Selector.Selector;
 
 [CreateAssetMenu(fileName = "IconSpriteMapper", menuName = "Game/Icon Sprite Mapper")]
 public class IconSpriteMapper : ScriptableObject
@@ -21,12 +21,31 @@ public class IconSpriteMapper : ScriptableObject
         }
     }
 
+    [Header("Mapeamentos por Categoria")]
+    [Tooltip("Ícones onde a distinção principal é o TIPO.")]
     [SerializeField]
-    private List<IconMapping> Mappings = new List<IconMapping>();
+    private List<IconMapping> TypeMappings = new List<IconMapping>();
+    
+    [Tooltip("Ícones onde a distinção principal é a COR.")]
+    [SerializeField]
+    private List<IconMapping> ColorMappings = new List<IconMapping>();
+    
+    [Tooltip("Ícones onde a distinção principal é o TAMANHO.")]
+    [SerializeField]
+    private List<IconMapping> SizeMappings = new List<IconMapping>();
 
     public Sprite GetSprite(IconType type, IconColor color, IconSize size)
     {
-        var mapping = Mappings.FirstOrDefault(m => 
+        // Esta busca deve idealmente pesquisar em todas as listas,
+        // pois um ícone é definido unicamente por TIPO, COR e TAMANHO,
+        // independentemente de qual lista ele foi categorizado no editor.
+        
+        var allMappings = TypeMappings
+            .Concat(ColorMappings)
+            .Concat(SizeMappings)
+            .Distinct();
+
+        var mapping = allMappings.FirstOrDefault(m => 
             m.Type == type && 
             m.Color == color && 
             m.Size == size
@@ -41,10 +60,38 @@ public class IconSpriteMapper : ScriptableObject
         return null;
     }
 
-    // MÉTODO REQUERIDO PELO ChallengeSelector
-    public List<IconData> GetAllValidIconData()
+    public List<IconData> GetAllValidIconData(bool isType, bool isColor, bool isSize)
     {
-        // Retorna a lista de todas as combinações IconData que possuem um Sprite configurado.
-        return Mappings.Select(m => m.ToIconData()).ToList();
+        List<IconMapping> combinedMappings = new List<IconMapping>();
+
+        if (isType)
+        {
+            combinedMappings.AddRange(TypeMappings);
+        }
+        
+        if (isColor)
+        {
+            combinedMappings.AddRange(ColorMappings);
+        }
+        
+        if (isSize)
+        {
+            combinedMappings.AddRange(SizeMappings);
+        }
+        
+        // Se nenhum booleano estiver ativo, usamos todos os mapeamentos para evitar um erro.
+        if (combinedMappings.Count == 0)
+        {
+            combinedMappings.AddRange(TypeMappings);
+            combinedMappings.AddRange(ColorMappings);
+            combinedMappings.AddRange(SizeMappings);
+            Debug.LogWarning("Nenhum critério (isType/isColor/isSize) ativo no ChallengeSelector. Usando todos os ícones disponíveis.");
+        }
+
+        // Remove duplicatas e retorna os dados do ícone.
+        return combinedMappings
+            .Distinct()
+            .Select(m => m.ToIconData())
+            .ToList();
     }
 }

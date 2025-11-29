@@ -12,16 +12,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f76cbca70447d5996d4c27b8537486, type: 3}
   m_Name: IconSpriteMapper
   m_EditorClassIdentifier: Assembly-CSharp::IconSpriteMapper
-  Mappings:
+  TypeMappings:
+  - Type: 0
+    Color: 0
+    Size: 0
+    IconSprite: {fileID: -4818402043903337990, guid: 1bddf2ca4ca38864c8d354d0614afae0, type: 3}
+  - Type: 1
+    Color: 0
+    Size: 0
+    IconSprite: {fileID: -3745059631513398721, guid: a266bd16e6e15cf488e26e833116be85, type: 3}
+  - Type: 2
+    Color: 0
+    Size: 0
+    IconSprite: {fileID: 8434726382044341135, guid: e86f1ea1441c64449b60694d8636a169, type: 3}
+  - Type: 3
+    Color: 0
+    Size: 0
+    IconSprite: {fileID: 2304774806413976820, guid: 786a8a632796e12458f19c25c08ca65a, type: 3}
+  ColorMappings:
+  - Type: 0
+    Color: 0
+    Size: 0
+    IconSprite: {fileID: 2304774806413976820, guid: 786a8a632796e12458f19c25c08ca65a, type: 3}
   - Type: 0
     Color: 1
     Size: 0
-    IconSprite: {fileID: 7743697900996978427, guid: 9508a56a09634574e9def79f5778c117, type: 3}
-  - Type: 1
-    Color: 2
-    Size: 2
-    IconSprite: {fileID: 868142991804142998, guid: a1ce6898e1a6e6943ac44601cdde1231, type: 3}
-  - Type: 2
+    IconSprite: {fileID: 8434726382044341135, guid: e86f1ea1441c64449b60694d8636a169, type: 3}
+  - Type: 0
     Color: 3
+    Size: 0
+    IconSprite: {fileID: -5534943130781226356, guid: a08e09e9f63864d4b99803d7f3fb86d7, type: 3}
+  - Type: 0
+    Color: 3
+    Size: 0
+    IconSprite: {fileID: -3745059631513398721, guid: a266bd16e6e15cf488e26e833116be85, type: 3}
+  SizeMappings:
+  - Type: 0
+    Color: 0
+    Size: 0
+    IconSprite: {fileID: 2304774806413976820, guid: 786a8a632796e12458f19c25c08ca65a, type: 3}
+  - Type: 0
+    Color: 0
+    Size: 2
+    IconSprite: {fileID: 8434726382044341135, guid: e86f1ea1441c64449b60694d8636a169, type: 3}
+  - Type: 0
+    Color: 0
     Size: 1
-    IconSprite: {fileID: 868142991804142998, guid: 93bde6edda514e64f916338e01db30a5, type: 3}
+    IconSprite: {fileID: -5534943130781226356, guid: a08e09e9f63864d4b99803d7f3fb86d7, type: 3}
