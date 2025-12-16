@@ -24,7 +24,7 @@ namespace Mechanics.StarsMechanic
             if (starInventory.CurrentStars >= necessaryStars)
             {
                 level++;
-                necessaryStars *= 3;
+                necessaryStars *= 2;
                 OnLevelUp?.Invoke();
             }
         }

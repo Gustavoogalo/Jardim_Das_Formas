@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585a06768d8dc6147bf61979aa412f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmManager
-  farmId: 2
+  farmId: 5
   requiredStars: 9
   plantingSlots:
   - {fileID: 1832041245}
@@ -2183,7 +2183,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -637.43, y: 339}
+  m_AnchoredPosition: {x: -637.43, y: 333.3}
   m_SizeDelta: {x: 220.37158, y: 99.0672}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &269210705
@@ -4171,7 +4171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585a06768d8dc6147bf61979aa412f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmManager
-  farmId: 2
+  farmId: 6
   requiredStars: 9
   plantingSlots:
   - {fileID: 1624345762}
@@ -4371,9 +4371,9 @@ RectTransform:
   - {fileID: 475339648}
   m_Father: {fileID: 269210704}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -110.18585, y: -49.53366}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 109.81415, y: -49.53366}
   m_SizeDelta: {x: 220.3716, y: 99.0672}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &599994179
@@ -7591,7 +7591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585a06768d8dc6147bf61979aa412f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmManager
-  farmId: 2
+  farmId: 4
   requiredStars: 9
   plantingSlots:
   - {fileID: 294747055}
@@ -9998,10 +9998,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1633182976}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -818.06134, y: -467.41318}
-  m_SizeDelta: {x: 209.5226, y: 145.1736}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 104.76123, y: 72.58679}
+  m_SizeDelta: {x: 209.5227, y: 145.17358}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343582238
 MonoBehaviour:
@@ -12328,7 +12328,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -12428,6 +12428,9 @@ MonoBehaviour:
   - {fileID: 1741178916}
   - {fileID: 1878981644}
   - {fileID: 1933180307}
+  - {fileID: 1039398233}
+  - {fileID: 32766732}
+  - {fileID: 555250475}
   ChallengeButtonType: {fileID: 1741178917}
   ChallengeButtonColor: {fileID: 1878981647}
   ChallengeButtonSize: {fileID: 1933180310}
