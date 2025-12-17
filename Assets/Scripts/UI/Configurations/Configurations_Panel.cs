@@ -12,8 +12,21 @@ namespace UI.Configurations
         [SerializeField] private GameObject pausePanel;
 
         [SerializeField] private Button pauseButton;
-        [SerializeField] private Button ToMenuButton;
+        [SerializeField] private Button resumeButton;
+        [SerializeField] private Button toMenuButton;
 
+        [Header("Configuracoes Settings")] [SerializeField]
+        private Button openConfig;
+
+        [SerializeField] private Button closeConfig;
+        [SerializeField] private Button toggleAudio;
+
+        [SerializeField] private GameObject configPanel;
+        
+        [Header("Audio Settings")] 
+        [SerializeField] private Sprite audioOn;
+        [SerializeField] private Sprite audioOff;
+        
         private bool isPaused = false;
 
         void Start()
@@ -32,10 +45,14 @@ namespace UI.Configurations
             }
 
             pauseButton.onClick.AddListener(TogglePause);
-            ToMenuButton.onClick.AddListener(BackToMenu);
+            resumeButton.onClick.AddListener(TogglePause);
+            toMenuButton.onClick.AddListener(BackToMenu);
+            
+            openConfig.onClick.AddListener(OpenConfig);
+            closeConfig.onClick.AddListener(CloseConfig);
+            
         }
 
-        // Método público que será chamado pelo botão
         public void TogglePause()
         {
             isPaused = !isPaused;
@@ -64,6 +81,27 @@ namespace UI.Configurations
             }
         }
 
+        private void OpenConfig()
+        {
+            configPanel.SetActive(true);
+        }
+
+        private void CloseConfig()
+        {
+            configPanel.SetActive(false);
+        }
+
+        private void ToggleAudio()
+        {
+            
+            
+        }
+
+        private void UpdateAudioIcon()
+        {
+            
+        }
+        
         public void BackToMenu()
         {
             SceneManager.LoadScene(0);

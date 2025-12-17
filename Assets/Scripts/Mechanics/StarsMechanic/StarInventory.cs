@@ -17,7 +17,7 @@ public class StarInventory : ScriptableObject
     {
         if (amount < 0) return;
         CurrentStars += amount;
-        SaveStars();
+        //SaveStars();
     }
 
     // Método para limpar o inventário (solicitado)
