@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Helper.EventBusFolder;
 using Mechanics.Selector.MVVM_Selector;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
@@ -98,9 +99,6 @@ namespace Mechanics.Selector.Selector
             this.isType = type;
             this.isColor = color;
             this.isSize = size;
-            
-            // Chama o Setup para garantir que o pool de IconData (allValidIconData)
-            // seja filtrado corretamente e o desafio comece.
             SetupNewChallenge();
         }
         
@@ -234,20 +232,34 @@ namespace Mechanics.Selector.Selector
 
             for (int i = 0; i < totalIcons; i++)
             {
-                if (i >= startIndex && i < startIndex + correctRef.Count)
-                {
-                    int refIndex = i - startIndex;
-                    answer.Add(correctRef[refIndex]);
-                }
-                else
-                {
-                    answer.Add(GetRandomValidIconData());
-                }
+                answer.Add(correctRef[i % correctRef.Count]); //modulo = pega o restante do calulo i/correctRef.Count, criando uma sequencia circular
             }
 
             return answer;
         }
 
+        // private List<IconData> GenerateCorrectAnswerSequence(List<IconData> correctRef, int totalIcons)
+        // {
+        //     List<IconData> answer = new List<IconData>();
+        //
+        //     int maxStartIndex = totalIcons - correctRef.Count;
+        //     int startIndex = Random.Range(0, maxStartIndex + 1);
+        //
+        //     for (int i = 0; i < totalIcons; i++)
+        //     {
+        //         if (i >= startIndex && i < startIndex + correctRef.Count)
+        //         {
+        //             int refIndex = i - startIndex;
+        //             answer.Add(correctRef[refIndex]);
+        //         }
+        //         else
+        //         {
+        //             answer.Add(GetRandomValidIconData());
+        //         }
+        //     }
+        //
+        //     return answer;
+        // }
         private List<IconData> GenerateIncorrectAnswerSequence(List<IconData> correctRef, int totalIcons)
         {
             List<IconData> answer;
@@ -382,7 +394,7 @@ namespace Mechanics.Selector.Selector
             if (starInventory != null)
             {
                 starInventory.AddStars(stars);
-                Game_Events.ChallengeCompleted(stars);
+                EventBus.Publish(new OnChallengeCompleted(stars));
             }
 
             if (rewardManager != null)
@@ -395,8 +407,7 @@ namespace Mechanics.Selector.Selector
                 OnChallengeEnded?.Invoke(true);
             }
 
-            Debug.Log(
-                $"Resposta Correta! Você ganhou {stars} estrela(s). Total acumulado: {starInventory.CurrentStars}");
+            Debug.Log($"Resposta Correta! Você ganhou {stars} estrela(s). Total acumulado: {starInventory.CurrentStars}");
         }
 
         private int CalculateStars()

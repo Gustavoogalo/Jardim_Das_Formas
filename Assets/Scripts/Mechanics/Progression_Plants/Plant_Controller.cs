@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Helper.EventBusFolder;
 using UnityEngine;
 using UnityEngine.UI; // Se estiver usando UI.Image, use esta linha
 
@@ -51,35 +52,30 @@ public class Plant_Controller : MonoBehaviour
     private void SubscribeToEvents()
     {
         // Subscrição: Adiciona o método 'OnStarGained' à lista de chamadas do evento
-        Game_Events.OnChallengeCompleted += OnStarGained;
-        
-        // Subscrição para redução de tempo
-        Game_Events.OnChallengeConcluded += ReduceGrowthTime; 
+        EventBus.Subscribe<OnChallengeCompleted>(OnStarGained);
+        EventBus.Subscribe<OnChallengeCompleted>(ReduceGrowthTime);
     }
 
     private void UnsubscribeFromEvents()
     {
-        // Desinscrição: Remove o método da lista de chamadas
-        Game_Events.OnChallengeCompleted -= OnStarGained;
-        Game_Events.OnChallengeConcluded -= ReduceGrowthTime; 
+        EventBus.Unsubscribe<OnChallengeCompleted>(OnStarGained);
+        EventBus.Unsubscribe<OnChallengeCompleted>(ReduceGrowthTime);
     }
 
     // --- Métodos Chamados pelo Evento ---
 
-    private void OnStarGained(int stars)
+    private void OnStarGained(OnChallengeCompleted starsGainedEvent)
     {
         // Lógica para adicionar uma nova planta se o campo estiver vazio ou
         // qualquer lógica que dependa do número de estrelas
-        Debug.Log($"Planta notificada: O jogador ganhou {stars} estrelas.");
     }
     
-    private void ReduceGrowthTime()
+    private void ReduceGrowthTime(OnChallengeCompleted starsGainedEvent)
     {
         if (currentGrowthProgress < 1f)
         {
             remainingGrowthTime -= timeReductionPerChallenge;
             remainingGrowthTime = Mathf.Max(0f, remainingGrowthTime); // Garante que não vá abaixo de zero
-            Debug.Log($"Tempo de crescimento restante reduzido. Novo tempo: {remainingGrowthTime}s");
         }
     }
 
@@ -144,7 +140,6 @@ public class Plant_Controller : MonoBehaviour
             {
                 plantImage.sprite = growthStages[currentGrowthStage];
             }
-            // Se estiver usando GameObjects, você ativaria o GameObject do estágio atual
         }
     }
 }

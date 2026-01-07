@@ -1,6 +1,8 @@
 ﻿using System;
+using Helper.EventBusFolder;
 using TMPro;
 using UnityEngine;
+using EventBus = Helper.EventBusFolder.EventBus;
 
 namespace Mechanics.StarsMechanic
 {
@@ -13,14 +15,23 @@ namespace Mechanics.StarsMechanic
         private void Start()
         {
             UpdateUI();
-            Game_Events.OnChallengeConcluded += UpdateUI;
+            EventBus.Subscribe<OnChallengeCompleted>(HandleChallengeCompleted);
+            
         }
 
+        private void HandleChallengeCompleted(OnChallengeCompleted challengeCompletedEvent)
+        {
+            UpdateUI();
+        }
         private void UpdateUI()
         {
             TextMeshPro.text = starInventory.CurrentStars.ToString(@"0000");
             
         }
-        
+
+        private void OnDisable()
+        {
+            EventBus.Unsubscribe<OnChallengeCompleted>(HandleChallengeCompleted);
+        }
     }
 }

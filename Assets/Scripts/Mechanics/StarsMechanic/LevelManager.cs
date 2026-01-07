@@ -1,4 +1,5 @@
 ﻿using System;
+using Helper.EventBusFolder;
 using UnityEngine;
 
 namespace Mechanics.StarsMechanic
@@ -12,23 +13,37 @@ namespace Mechanics.StarsMechanic
         [SerializeField] private StarInventory starInventory;
         
         public event Action OnLevelUp;
-        
+
+        private void OnDisable()
+        {
+            EventBus.Unsubscribe<OnChallengeCompleted>(HandleChallengeCompleted);
+        }
+
         private void Start()
         {
             VerifyToUpLevel();
-            Game_Events.OnChallengeConcluded += VerifyToUpLevel;
+            EventBus.Subscribe<OnChallengeCompleted>(HandleChallengeCompleted);
         }
 
+        private void HandleChallengeCompleted(OnChallengeCompleted challengeCompletedEvent)
+        {
+            VerifyToUpLevel();
+        }
         private void VerifyToUpLevel()
         {
             if (starInventory.CurrentStars >= necessaryStars)
             {
                 level++;
-                necessaryStars *= 2;
                 OnLevelUp?.Invoke();
             }
         }
         
         public int GetCurrentLevel() => level;
+
+        public void SetCurrentRequiredStars(int requiredStars)
+        {
+            necessaryStars = requiredStars;
+            Debug.Log($"valor de estrelas requeridas updated para {necessaryStars}.");
+        }
     }
 }

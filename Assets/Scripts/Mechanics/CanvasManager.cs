@@ -1,4 +1,5 @@
 ﻿using System;
+using Helper.EventBusFolder;
 using Mechanics.Selector.Selector;
 using Mechanics.StarsMechanic;
 using UI.Juyce;
@@ -14,26 +15,32 @@ namespace Mechanics
 
         [SerializeField] private Button levelUpButton;
         [SerializeField] private FarmManager[] farmManager;
-
+        [SerializeField] private int maxFarms;
 
         [Header("Challenge Part")] [SerializeField]
-        private Button ChallengeButtonType; // NOVO: Botão para desafio de Tipo
-        [SerializeField] private Button ChallengeButtonColor; // NOVO: Botão para desafio de Cor
-        [SerializeField] private Button ChallengeButtonSize; // NOVO: Botão para desafio de Tamanho
+        private Button ChallengeButtonType;
 
-        [SerializeField] private Button ChallengeButton04; // NOVO: Botão para desafio de Tipo
-        [SerializeField] private Button ChallengeButton05; // NOVO: Botão para desafio de Cor
-        [SerializeField] private Button ChallengeButton06; // NOVO: Botão para desafio de Tamanho
-        
-        [SerializeField] private JuycenessPanel _challengePanel; // Renomeado para maior clareza
+        [SerializeField] private Button ChallengeButtonColor;
+        [SerializeField] private Button ChallengeButtonSize;
+        [SerializeField] private Button ChallengeButton04;
+        [SerializeField] private Button ChallengeButton05;
+        [SerializeField] private Button ChallengeButton06;
 
-        // 🚨 NOVO: Referência direta ao ChallengeSelector
+        [SerializeField] private JuycenessPanel _challengePanel;
+        [SerializeField] private GameObject _challengeTutorialPanel;
+        [SerializeField] private Button _challengeTutorialButton;
+        [SerializeField] private Button _challengeTutorialButtonFinal;
+        private bool isFirstTime = true;
+
         private ChallengeSelector _challengeSelectorComponent;
 
         private void Start()
         {
+            maxFarms = farmManager.Length;
+
             levelManager.OnLevelUp += UpperLevelUpPanel;
-            if (Game_Events.GetCurrentFarm() == null) SetNewCurrentFarm();
+
+            if (GameState.CurrentFarm == null) SetNewCurrentFarm();
 
             _challengeSelectorComponent = _challengePanel.GetComponentInChildren<ChallengeSelector>(true);
 
@@ -41,14 +48,18 @@ namespace Mechanics
             {
                 ChallengeButtonType.onClick.AddListener(() =>
                     VerifyUnlocked(ChallengeButtonType.GetComponent<FarmManager>(), true, false, false));
-                ChallengeButtonColor.onClick.AddListener(() => VerifyUnlocked(ChallengeButtonColor.GetComponent<FarmManager>(),false, true, false));
-                ChallengeButtonSize.onClick.AddListener(() => VerifyUnlocked(ChallengeButtonSize.GetComponent<FarmManager>(),false, false, true));
-
+                ChallengeButtonColor.onClick.AddListener(() =>
+                    VerifyUnlocked(ChallengeButtonColor.GetComponent<FarmManager>(), false, true, false));
+                ChallengeButtonSize.onClick.AddListener(() =>
+                    VerifyUnlocked(ChallengeButtonSize.GetComponent<FarmManager>(), false, false, true));
                 ChallengeButton04.onClick.AddListener(() =>
                     VerifyUnlocked(ChallengeButton04.GetComponent<FarmManager>(), true, false, false));
-                ChallengeButton05.onClick.AddListener(() => VerifyUnlocked(ChallengeButton05.GetComponent<FarmManager>(),false, true, false));
-                ChallengeButton06.onClick.AddListener(() => VerifyUnlocked(ChallengeButton06.GetComponent<FarmManager>(),false, false, true));
-
+                ChallengeButton05.onClick.AddListener(() =>
+                    VerifyUnlocked(ChallengeButton05.GetComponent<FarmManager>(), false, true, false));
+                ChallengeButton06.onClick.AddListener(() =>
+                    VerifyUnlocked(ChallengeButton06.GetComponent<FarmManager>(), false, false, true));
+                _challengeTutorialButton.onClick.AddListener(() => InitializeChallengeAfterTutorial(true, false, false));
+                _challengeTutorialButtonFinal.onClick.AddListener(() => InitializeChallengeAfterTutorial(true, false, false));
             }
             else
             {
@@ -70,10 +81,26 @@ namespace Mechanics
         {
             if (_challengeSelectorComponent != null)
             {
-                // Define os booleanos no ChallengeSelector e inicia o SetupNewChallenge()
+                if (isFirstTime)
+                {
+                    _challengeTutorialPanel.SetActive(true);
+                    isFirstTime = false;
+                }
+                else
+                {
+                    _challengeSelectorComponent.SetChallengeCriteriaAndStart(isType, isColor, isSize);
+                    _challengePanel.OpenPanel();
+                }
+            }
+        }
+
+        private void InitializeChallengeAfterTutorial(bool isType, bool isColor, bool isSize)
+        {
+            if (_challengeSelectorComponent != null)
+            {
+                _challengeTutorialPanel.SetActive(false);
                 _challengeSelectorComponent.SetChallengeCriteriaAndStart(isType, isColor, isSize);
 
-                // Abre o painel (JuycenessPanel)
                 _challengePanel.OpenPanel();
             }
         }
@@ -95,10 +122,21 @@ namespace Mechanics
         {
             foreach (var farm in farmManager)
             {
+                if (farm.IsLastFarm)
+                {
+                    EventBus.Publish(new OnNextLevelEvent(2));
+                }
+
                 if (farm.GetFarmId() == levelManager.GetCurrentLevel())
                 {
-                    Game_Events.SetCurrentFarm(farm);
+                    EventBus.Publish(new UpdateCurrentFarmEvent(farm));
+                    GameState.CurrentFarm = farm;
+                    levelManager.SetCurrentRequiredStars(farm.GetRequiredStars());
                     if (!farm.unlocked) farm.UnlockFarm();
+                    if (farm.GetFarmId() == maxFarms)
+                    {
+                        farm.SetIsLastFarm(true);
+                    }
                 }
             }
         }
