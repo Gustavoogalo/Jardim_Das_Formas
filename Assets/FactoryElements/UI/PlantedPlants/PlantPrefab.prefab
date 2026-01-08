@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7414241029931596030
+--- !u!1 &982319527789624683
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,53 +8,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8940771408728365264}
-  - component: {fileID: 1799562487384750693}
-  - component: {fileID: 7450749157117664069}
-  - component: {fileID: 2775743960226698827}
-  - component: {fileID: 3749954593023256098}
+  - component: {fileID: 1292433558532924372}
+  - component: {fileID: 5960062659000235377}
+  - component: {fileID: 8137969331846150839}
+  - component: {fileID: 5952798765668921288}
   m_Layer: 5
-  m_Name: ObjectPrefab
+  m_Name: PlantPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8940771408728365264
+--- !u!224 &1292433558532924372
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7414241029931596030}
+  m_GameObject: {fileID: 982319527789624683}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8813825294168122635}
+  - {fileID: 800259227089906923}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 150}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1799562487384750693
+--- !u!222 &5960062659000235377
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7414241029931596030}
+  m_GameObject: {fileID: 982319527789624683}
   m_CullTransparentMesh: 1
---- !u!114 &7450749157117664069
+--- !u!114 &8137969331846150839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7414241029931596030}
+  m_GameObject: {fileID: 982319527789624683}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -78,36 +77,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2775743960226698827
+--- !u!114 &5952798765668921288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7414241029931596030}
+  m_GameObject: {fileID: 982319527789624683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61278b7965d14f39a17a7ce4ceb11413, type: 3}
+  m_Script: {fileID: 11500000, guid: 6734a1851c5e404abcda76e473b512a6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IconFoodItem
-  foodType: 1
-  canvasGroup: {fileID: 3749954593023256098}
-  rectTransform: {fileID: 0}
-  originalParent: {fileID: 0}
-  sourceSlotManager: {fileID: 0}
---- !u!225 &3749954593023256098
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7414241029931596030}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!1 &7471782126958247414
+  m_EditorClassIdentifier: Assembly-CSharp::FoodPlantController
+  dropDuration: 0.5
+  dropDistance: 1000
+  growthTime: 10
+  plantImage: {fileID: 1728791540412255199}
+--- !u!1 &1377870676258819760
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,9 +101,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8813825294168122635}
-  - component: {fileID: 2644208091186290322}
-  - component: {fileID: 3353299556424445641}
+  - component: {fileID: 800259227089906923}
+  - component: {fileID: 318014689148239519}
+  - component: {fileID: 1728791540412255199}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -125,47 +111,47 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8813825294168122635
+--- !u!224 &800259227089906923
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7471782126958247414}
+  m_GameObject: {fileID: 1377870676258819760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8940771408728365264}
+  m_Father: {fileID: 1292433558532924372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2644208091186290322
+--- !u!222 &318014689148239519
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7471782126958247414}
+  m_GameObject: {fileID: 1377870676258819760}
   m_CullTransparentMesh: 1
---- !u!114 &3353299556424445641
+--- !u!114 &1728791540412255199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7471782126958247414}
+  m_GameObject: {fileID: 1377870676258819760}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6132076, g: 0.18222678, b: 0.18222678, a: 1}
+  m_Color: {r: 0.25861523, g: 0.5943396, b: 0.16540584, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

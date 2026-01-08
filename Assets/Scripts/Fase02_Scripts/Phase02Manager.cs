@@ -39,6 +39,7 @@ namespace Fase02_Scripts
             if (!isUnlocked) return;
             
             _lockedPanel.SetActive(false);
+            EventBus.Publish(new OnSecondLevelInitiateEvent());
         }
 
         public void InitializeLevel02WithAnim()
@@ -51,6 +52,10 @@ namespace Fase02_Scripts
             InitializePhase02();
         }
 
+        public void ResetLevel02()
+        {
+           EventBus.Publish(new OnResetLevel02Event());
+        }
         #region Challenge Part
         private void InitializeRandomSequence()
         {

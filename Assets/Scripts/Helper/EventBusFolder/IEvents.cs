@@ -37,5 +37,27 @@
             Level = level;
         }
     }
+
+    #region SecondLevel
+    public class OnSecondLevelInitiateEvent : IEvents
+    {
+        public OnSecondLevelInitiateEvent() { }
+    }
+
+    public class OnSequenceInitialized : IEvents
+    {
+        public SequenceManager sequenceManager;
+
+        public OnSequenceInitialized(SequenceManager seqManager)
+        {
+            sequenceManager = seqManager;
+        }
+    }
+
+    public class OnResetLevel02Event : IEvents
+    {
+        public OnResetLevel02Event() { }
+    }
     
+    #endregion
 }

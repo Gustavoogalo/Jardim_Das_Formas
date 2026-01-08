@@ -34,17 +34,18 @@ public class FarmSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
             // 1. Instancia a planta
             IconFoodType typeToPlant = droppedItem.foodType;
             GameObject newPlant = sequenceManager.InstantiatePlant(typeToPlant, plantContainer);
-            
+            ItemSlotManager originManager = droppedItem.sourceSlotManager;
             FoodPlantController plantController = newPlant.GetComponent<FoodPlantController>();
             if (plantController != null)
             {
                 currentPlant = plantController;
-                currentPlant.Initialize(this, typeToPlant, sequenceManager.GetFoodData(typeToPlant));
+                IconFoodData plantData = sequenceManager.GetFoodDataFromType(typeToPlant);
+                currentPlant.Initialize(this, typeToPlant, plantData);
                 
                 // 2. Dispara a reposição no slot de origem
-                if (droppedItem.sourceSlotManager != null)
+                if (originManager != null)
                 {
-                    droppedItem.sourceSlotManager.SpawnNewItem();
+                    originManager.RepositionUsedItem(typeToPlant);
                 }
                 
                 // 3. DESTRÓI o item de semente que foi usado!
@@ -54,7 +55,7 @@ public class FarmSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
             }
             else
             {
-                Destroy(newPlant);
+               // Destroy(newPlant);
             }
         }
     }

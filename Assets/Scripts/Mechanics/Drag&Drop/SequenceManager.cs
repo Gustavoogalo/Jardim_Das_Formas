@@ -2,34 +2,63 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Helper.EventBusFolder;
 using Mechanics.Drag_Drop.FoodsPlants;
+using Unity.VisualScripting;
+using EventBus = Helper.EventBusFolder.EventBus;
 using Random = UnityEngine.Random;
 
 public class SequenceManager : MonoBehaviour
 {
-    [Header("References")]
+    [Header("References")] [SerializeField]
+    private Transform _sequenceContainer;
     public FarmRowContainer[] allRows;
-    public IconFoodData[] availableFoodData; 
-    public GameObject plantPrefab; 
-    public GameObject winCanvas;   
-    public GameObject warningCanvas; 
-    
-    [Header("Sequence")]
-    public IconFoodType[] referenceSequence; 
+    public List<IconFoodData> availableFoodData;
+    public GameObject plantPrefab;
+    public GameObject winCanvas;
+    public GameObject warningCanvas;
+
+    [Header("Sequence")] public IconFoodType[] referenceSequence;
     private IconFoodType[] availableTypes;
 
-    private Queue<IconFoodType> seedQueue; 
+    private Queue<IconFoodType> seedQueue;
 
     private List<FarmRowContainer> correctRows = new List<FarmRowContainer>();
 
     void Awake()
     {
         availableTypes = availableFoodData.Select(d => d.type).Where(t => t != IconFoodType.None).ToArray();
-        
+    }
+
+    private void OnEnable()
+    {
+        EventBus.Subscribe<OnSecondLevelInitiateEvent>(InitializeSequencer);
+        EventBus.Subscribe<OnResetLevel02Event>(ResetSequencer);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe<OnSecondLevelInitiateEvent>(InitializeSequencer);
+        EventBus.Unsubscribe<OnResetLevel02Event>(ResetSequencer);
+    }
+
+    private void InitializeSequencer(OnSecondLevelInitiateEvent eventData)
+    {
         GenerateReferenceSequence();
-        
-        // NOVO: Inicializa a fila de sementes (em vez de InitializeSeedSpawnSlots)
         InitializeSeedQueue();
+
+        EventBus.Publish(new OnSequenceInitialized(this));
+    }
+
+    private void ResetSequencer(OnResetLevel02Event eventData)
+    {
+        if (seedQueue != null && seedQueue.Count > 0)
+        {
+            seedQueue.Clear();
+        }
+        correctRows.Clear();
+        if(winCanvas.activeSelf) winCanvas.SetActive(false);
+        if(warningCanvas.activeSelf) warningCanvas.SetActive(false);
     }
 
     private void GenerateReferenceSequence()
@@ -39,6 +68,7 @@ public class SequenceManager : MonoBehaviour
             Debug.LogError("FarmRows não configuradas. Não é possível gerar a sequência.");
             return;
         }
+
         int sequenceLength = allRows[0].slots.Length;
         referenceSequence = new IconFoodType[sequenceLength];
 
@@ -48,43 +78,58 @@ public class SequenceManager : MonoBehaviour
             {
                 int randomIndex = Random.Range(0, availableTypes.Length);
                 referenceSequence[i] = availableTypes[randomIndex];
-            } else {
+            }
+            else
+            {
                 referenceSequence[i] = IconFoodType.None;
             }
         }
-        
+        InstantiateSequence();
         Debug.Log("Sequência de Referência Gerada: " + string.Join(", ", referenceSequence.Select(t => t.ToString())));
+    }
+
+    private void InstantiateSequence()
+    {
+        foreach (var plant in referenceSequence)
+        {
+            GameObject newPlant = InstantiatePlant(plant, _sequenceContainer);
+        }
     }
     
     private void InitializeSeedQueue()
     {
         IconFoodType[] requiredTypes = referenceSequence.Distinct().ToArray();
-        
+
         // Garante que o jogador tem 3 de cada tipo de semente para começar a jogar
         seedQueue = new Queue<IconFoodType>(requiredTypes.SelectMany(type => Enumerable.Repeat(type, 3)));
     }
 
-    public IconFoodData GetNextSeedType()
-    {
-        if (seedQueue == null || seedQueue.Count == 0)
-        {
-            Debug.LogWarning("A fila de sementes está vazia. Não há mais sementes disponíveis!");
-            return null;
-        }
-        
-        IconFoodType nextType = seedQueue.Dequeue();
-        
-        // Coloca o tipo de volta no final para que ele possa ser reposto
-        seedQueue.Enqueue(nextType); 
+    // public IconFoodData GetNextSeedType()
+    // {
+    //     if (seedQueue == null || seedQueue.Count == 0)
+    //     {
+    //         Debug.LogWarning("A fila de sementes está vazia. Não há mais sementes disponíveis!");
+    //         return null;
+    //     }
+    //
+    //     IconFoodType nextType = seedQueue.Dequeue();
+    //
+    //     // Coloca o tipo de volta no final para que ele possa ser reposto
+    //     seedQueue.Enqueue(nextType);
+    //
+    //     return GetUniqueAvailableFoods();
+    // }
 
-        return GetFoodData(nextType);
+    public List<IconFoodData> GetUniqueAvailableFoods()
+    {
+        return availableFoodData.Where(d => d.type != IconFoodType.None).ToList();
     }
-    
-    public IconFoodData GetFoodData(IconFoodType type)
+
+    public IconFoodData GetFoodDataFromType(IconFoodType type)
     {
         return availableFoodData.FirstOrDefault(d => d.type == type);
     }
-    
+
     public GameObject InstantiatePlant(IconFoodType type, Transform parent)
     {
         return Instantiate(plantPrefab, parent.position, Quaternion.identity, parent);
@@ -93,7 +138,7 @@ public class SequenceManager : MonoBehaviour
     public bool CheckRowSequence(IconFoodType[] planted)
     {
         if (planted.Length != referenceSequence.Length) return false;
-        
+
         for (int i = 0; i < planted.Length; i++)
         {
             if (planted[i] != referenceSequence[i])
@@ -101,9 +146,10 @@ public class SequenceManager : MonoBehaviour
                 return false;
             }
         }
+
         return true;
     }
-    
+
     public void NotifyPlantRemoved()
     {
         correctRows.Clear();
@@ -112,20 +158,21 @@ public class SequenceManager : MonoBehaviour
             row.CheckSequenceStatus();
         }
     }
-    
+
     public void NotifyRowCorrect(FarmRowContainer row)
     {
         if (!correctRows.Contains(row))
         {
             correctRows.Add(row);
         }
+
         CheckWinCondition();
     }
-    
+
     public void NotifyRowIncorrect(FarmRowContainer row)
     {
-        correctRows.Remove(row); 
-        CheckFinalState(); 
+        correctRows.Remove(row);
+        CheckFinalState();
     }
 
     private void CheckWinCondition()
@@ -140,12 +187,13 @@ public class SequenceManager : MonoBehaviour
             CheckFinalState();
         }
     }
-    
+
     private void CheckFinalState()
     {
         bool allSlotsFull = allRows.All(r => r.slots.All(s => s.currentPlant != null));
-        
-        bool allPlantsGrown = allRows.All(r => r.slots.All(s => s.currentPlant != null && s.currentPlant.GetCurrentState() == PlantState.Grown));
+
+        bool allPlantsGrown = allRows.All(r =>
+            r.slots.All(s => s.currentPlant != null && s.currentPlant.GetCurrentState() == PlantState.Grown));
 
         if (allSlotsFull && allPlantsGrown)
         {
@@ -153,7 +201,7 @@ public class SequenceManager : MonoBehaviour
             {
                 warningCanvas.SetActive(true);
                 Debug.Log("Aviso: Todas as plantas cresceram, mas há sequências incorretas. Dropping!");
-                
+
                 foreach (var row in allRows)
                 {
                     IconFoodType[] plantedSequence = row.slots.Select(s => s.currentPlant.GetPlantType()).ToArray();
