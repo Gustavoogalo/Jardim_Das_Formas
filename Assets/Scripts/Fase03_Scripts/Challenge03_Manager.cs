@@ -40,7 +40,7 @@ namespace Fase03_Scripts
 
         private void OnPatternsReady(OnPatternsGeneratedEvent eventData)
         {
-            List<FruitController> availablePatterns = new();
+            List<FruitController> availablePatterns = new List<FruitController>(eventData.patterns);
             List<float> usedSliderValues = new();
 
             for (int i = 0; i < _fruitContainers.Length; i++)
@@ -55,6 +55,7 @@ namespace Fase03_Scripts
                 usedSliderValues.Add(targetSlider);
                 
                 _fruitContainers[i].Initialize(selectedPattern, targetSlider);
+           Debug.Log("containers de fruta inicializados");
             }
         }
 

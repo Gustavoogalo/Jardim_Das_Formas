@@ -4040,18 +4040,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353236028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 998022144}
-  m_Father: {fileID: 1633182976}
+  m_Father: {fileID: 397911147}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 2878, y: 0}
+  m_SizeDelta: {x: 0, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &358439447
 GameObject:
@@ -4672,6 +4672,7 @@ RectTransform:
   m_Children:
   - {fileID: 342490767}
   - {fileID: 1120521447}
+  - {fileID: 353236029}
   m_Father: {fileID: 1633182976}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -9993,8 +9994,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fase03_Scripts.Challenge03_Manager
   _fruitBasketPatterns: {fileID: 1364012475}
-  _fruitController: {fileID: 0}
   _challengeController: {fileID: 1504425888}
+  _fruitContainers:
+  - {fileID: 1462074499}
+  - {fileID: 2047211966}
+  - {fileID: 2043995377}
 --- !u!1 &1010913362
 GameObject:
   m_ObjectHideFlags: 0
@@ -14305,6 +14309,7 @@ MonoBehaviour:
   - {fileID: 1364012472}
   jumpHeight: 200
   jumpRange: 150
+  _correctFruitsCount: 0
 --- !u!1 &1387244856
 GameObject:
   m_ObjectHideFlags: 0
@@ -15767,6 +15772,8 @@ MonoBehaviour:
   - {fileID: 652014754}
   - {fileID: 1724707922}
   - {fileID: 1952220403}
+  _myTargetValue: 0
+  _tuningRange: 0.2
 --- !u!1 &1463944308
 GameObject:
   m_ObjectHideFlags: 0
@@ -18157,7 +18164,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 397911147}
-  - {fileID: 353236029}
   - {fileID: 627990259}
   - {fileID: 2053130637}
   m_Father: {fileID: 0}
@@ -24133,6 +24139,8 @@ MonoBehaviour:
   - {fileID: 164190181}
   - {fileID: 1390658502}
   - {fileID: 66326313}
+  _myTargetValue: 0
+  _tuningRange: 0.2
 --- !u!1 &2047211962
 GameObject:
   m_ObjectHideFlags: 0
@@ -24228,6 +24236,8 @@ MonoBehaviour:
   - {fileID: 929676224}
   - {fileID: 2069404362}
   - {fileID: 1484139470}
+  _myTargetValue: 0
+  _tuningRange: 0.2
 --- !u!1 &2053130636
 GameObject:
   m_ObjectHideFlags: 0
