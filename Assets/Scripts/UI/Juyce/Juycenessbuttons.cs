@@ -206,7 +206,13 @@ public class Juycenessbuttons : MonoBehaviour, ISelectHandler, IPointerEnterHand
     }
 
     public void OnSelect(BaseEventData eventData) => Animate(true);
-    public void OnPointerEnter(PointerEventData eventData) => Animate(true);
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        SoundManager.Instance.PlaySFX("ButtonHover");
+        Animate(true);
+    }
+
     public void OnPointerExit(PointerEventData eventData) => Animate(false);
 
     private void OnEnable()

@@ -79,7 +79,9 @@ namespace Fase03_Scripts.Fruit
         [SerializeField] private List<FormaConfig> _formaConfigs;
         [SerializeField] private List<SizeConfig> _sizeConfigs;
         [SerializeField] private List<ColorConfig> _colorConfigs;
-        
+
+
+        private Vector3 _originalTreePos;
         
         public bool isRef = false;
 
@@ -102,7 +104,11 @@ namespace Fase03_Scripts.Fruit
                     _imageComponent.color.r, _imageComponent.color.g, _imageComponent.color.b, 0.5f);
             }
         }
-        
+
+        private void Start()
+        {
+        }
+
         public void SetFruitModifications(FruitType type,TamanhoModification tamanho, FormaModification forma, CorModification cor)
         {
             _fruitType = type;
@@ -137,10 +143,17 @@ namespace Fase03_Scripts.Fruit
             _imageComponent.color = new Color(targetColor.r, targetColor.g, targetColor.b, alpha);
         }
 
+        public void ResetOriginalPosition()
+        {
+            transform.position = _originalTreePos;
+            gameObject.SetActive(true);
+        }
+
         public void OnBeginDrag(PointerEventData eventData)
         {
             if (isRef) return;
             _startPos = transform.position;
+            _originalTreePos = transform.position;
             if(_canvasGroup) _canvasGroup.blocksRaycasts = false;
         }
 

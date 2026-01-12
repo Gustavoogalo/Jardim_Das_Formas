@@ -91,7 +91,11 @@ namespace Fase03_Scripts.Basket
 
             yield return new WaitForSeconds(1.0f);
             dropped.gameObject.SetActive(true);
-            StartCoroutine(dropped.FallAnimation(dropped.transform.position, jumpHeight, jumpRange, 0.7f));
+           yield return StartCoroutine(dropped.FallAnimation(dropped.transform.position, jumpHeight, jumpRange, 0.7f));
+            
+            yield return new WaitForSeconds(0.2f);
+            dropped.ResetOriginalPosition();
+            
         }
     }
 }

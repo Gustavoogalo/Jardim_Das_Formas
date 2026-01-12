@@ -7,6 +7,8 @@ using Fase03_Scripts.Trees;
 using Helper.EventBusFolder;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using EventBus = Helper.EventBusFolder.EventBus;
 using Random = UnityEngine.Random;
 
@@ -14,22 +16,22 @@ namespace Fase03_Scripts
 {
     public class Challenge03_Manager : MonoBehaviour
     {
-        // [SerializeField] private Transform _basketContainer;
-        // [SerializeField] private Transform _treeContainer;
-        
         [SerializeField] private FruitBasketPatterns _fruitBasketPatterns;
         [SerializeField] private Challenge03_Controller _challengeController;
         [SerializeField] private FruitsContainer[] _fruitContainers;
 
-      [SerializeField] private GameObject _lockedPanel;
+        [SerializeField] private GameObject _lockedPanel;
         private bool isUnlocked;
         [SerializeField] private int level = 3;
+        [SerializeField] private GameObject _winPanel;
+        [SerializeField] private Button _toMenuButton;
 
         private void OnEnable()
         {
             EventBus.Subscribe<OnThirdLevelInitiateEvent>(InitializeChallenge);
             EventBus.Subscribe<OnPatternsGeneratedEvent>(OnPatternsReady);
             EventBus.Subscribe<OnNextLevelEvent>(UnlockLevel);
+            EventBus.Subscribe<OnThirdLevelCompletedEvent>(OpenWinPanel);
         }
 
 
@@ -38,6 +40,7 @@ namespace Fase03_Scripts
             EventBus.Unsubscribe<OnThirdLevelInitiateEvent>(InitializeChallenge);
             EventBus.Unsubscribe<OnPatternsGeneratedEvent>(OnPatternsReady);
             EventBus.Unsubscribe<OnNextLevelEvent>(UnlockLevel);
+            EventBus.Unsubscribe<OnThirdLevelCompletedEvent>(OpenWinPanel);
         }
 
         private void UnlockLevel(OnNextLevelEvent levelEvent)
@@ -47,13 +50,14 @@ namespace Fase03_Scripts
                 isUnlocked = true;
             }
         }
+
         private void InitializeChallenge(OnThirdLevelInitiateEvent eventData)
         {
             if (!isUnlocked) return;
-            if(_lockedPanel.activeSelf) _lockedPanel.SetActive(false);
-            
-         _fruitBasketPatterns.Initialize();
-         _challengeController.Initialize();
+            if (_lockedPanel.activeSelf) _lockedPanel.SetActive(false);
+
+            _fruitBasketPatterns.Initialize();
+            _challengeController.Initialize();
         }
 
         private void OnPatternsReady(OnPatternsGeneratedEvent eventData)
@@ -64,16 +68,16 @@ namespace Fase03_Scripts
             for (int i = 0; i < _fruitContainers.Length; i++)
             {
                 if (availablePatterns.Count == 0) break;
-                
+
                 int randomIndex = Random.Range(0, availablePatterns.Count);
                 FruitController selectedPattern = availablePatterns[randomIndex];
                 availablePatterns.RemoveAt(randomIndex);
 
                 float targetSlider = GenerateUniqueSliderValue(usedSliderValues);
                 usedSliderValues.Add(targetSlider);
-                
+
                 _fruitContainers[i].Initialize(selectedPattern, targetSlider);
-           Debug.Log("containers de fruta inicializados");
+                Debug.Log("containers de fruta inicializados");
             }
         }
 
@@ -85,7 +89,8 @@ namespace Fase03_Scripts
             {
                 val = Random.Range(0.1f, 0.9f);
                 safetyNet++;
-            } while(IsValueTooClose(val, usedSliderValues) && safetyNet < 100);
+            } while (IsValueTooClose(val, usedSliderValues) && safetyNet < 100);
+
             return val;
         }
 
@@ -99,11 +104,22 @@ namespace Fase03_Scripts
             return false;
         }
 
-        [ContextMenu( "Initialize Fase03 Teste" )]
+        [ContextMenu("Initialize Fase03 Teste")]
         public void InitializeTest()
         {
             _fruitBasketPatterns.Initialize();
             _challengeController.Initialize();
+        }
+
+        public void OpenWinPanel(OnThirdLevelCompletedEvent eventData)
+        {
+            _toMenuButton.onClick.AddListener(BackToMenu);
+            _winPanel.SetActive(true);
+        }
+
+        public void BackToMenu()
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }
