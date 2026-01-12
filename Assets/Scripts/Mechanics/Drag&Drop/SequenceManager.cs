@@ -52,13 +52,16 @@ public class SequenceManager : MonoBehaviour
 
     private void ResetSequencer(OnResetLevel02Event eventData)
     {
-        if (seedQueue != null && seedQueue.Count > 0)
-        {
-            seedQueue.Clear();
-        }
+        if(seedQueue != null) seedQueue.Clear();
         correctRows.Clear();
-        if(winCanvas.activeSelf) winCanvas.SetActive(false);
-        if(warningCanvas.activeSelf) warningCanvas.SetActive(false);
+
+        foreach (Transform child in _sequenceContainer)
+        {
+            Destroy(child.gameObject);
+        }
+        
+        if(winCanvas) winCanvas.SetActive(false);
+        if(warningCanvas) warningCanvas.SetActive(false);
     }
 
     private void GenerateReferenceSequence()
@@ -90,6 +93,10 @@ public class SequenceManager : MonoBehaviour
 
     private void InstantiateSequence()
     {
+        foreach (Transform child in _sequenceContainer)
+        {
+            Destroy(child.gameObject);
+        }
         foreach (var plant in referenceSequence)
         {
             GameObject newPlant = InstantiatePlant(plant, _sequenceContainer);
@@ -103,22 +110,7 @@ public class SequenceManager : MonoBehaviour
         // Garante que o jogador tem 3 de cada tipo de semente para começar a jogar
         seedQueue = new Queue<IconFoodType>(requiredTypes.SelectMany(type => Enumerable.Repeat(type, 3)));
     }
-
-    // public IconFoodData GetNextSeedType()
-    // {
-    //     if (seedQueue == null || seedQueue.Count == 0)
-    //     {
-    //         Debug.LogWarning("A fila de sementes está vazia. Não há mais sementes disponíveis!");
-    //         return null;
-    //     }
-    //
-    //     IconFoodType nextType = seedQueue.Dequeue();
-    //
-    //     // Coloca o tipo de volta no final para que ele possa ser reposto
-    //     seedQueue.Enqueue(nextType);
-    //
-    //     return GetUniqueAvailableFoods();
-    // }
+    
 
     public List<IconFoodData> GetUniqueAvailableFoods()
     {
@@ -180,7 +172,7 @@ public class SequenceManager : MonoBehaviour
         if (correctRows.Count == allRows.Length)
         {
             winCanvas.SetActive(true);
-            Debug.Log("Nível Concluído: Todas as sequências estão corretas!");
+            EventBus.Publish(new OnNextLevelEvent(3));
         }
         else
         {

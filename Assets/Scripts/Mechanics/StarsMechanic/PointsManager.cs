@@ -14,6 +14,7 @@ namespace Mechanics.StarsMechanic
 
         private void Start()
         {
+            starInventory.ClearStars();
             UpdateUI();
             EventBus.Subscribe<OnChallengeCompleted>(HandleChallengeCompleted);
             

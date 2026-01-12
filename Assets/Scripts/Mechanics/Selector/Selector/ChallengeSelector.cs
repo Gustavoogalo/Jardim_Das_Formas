@@ -161,8 +161,6 @@ namespace Mechanics.Selector.Selector
             
             if (allValidIconData == null || allValidIconData.Count == 0)
             {
-                Debug.LogError(
-                    "SpriteMapper não forneceu nenhuma combinação IconData válida. Verifique as configurações e os booleanos.");
                 return;
             }
 
@@ -237,29 +235,6 @@ namespace Mechanics.Selector.Selector
 
             return answer;
         }
-
-        // private List<IconData> GenerateCorrectAnswerSequence(List<IconData> correctRef, int totalIcons)
-        // {
-        //     List<IconData> answer = new List<IconData>();
-        //
-        //     int maxStartIndex = totalIcons - correctRef.Count;
-        //     int startIndex = Random.Range(0, maxStartIndex + 1);
-        //
-        //     for (int i = 0; i < totalIcons; i++)
-        //     {
-        //         if (i >= startIndex && i < startIndex + correctRef.Count)
-        //         {
-        //             int refIndex = i - startIndex;
-        //             answer.Add(correctRef[refIndex]);
-        //         }
-        //         else
-        //         {
-        //             answer.Add(GetRandomValidIconData());
-        //         }
-        //     }
-        //
-        //     return answer;
-        // }
         private List<IconData> GenerateIncorrectAnswerSequence(List<IconData> correctRef, int totalIcons)
         {
             List<IconData> answer;
@@ -474,14 +449,6 @@ namespace Mechanics.Selector.Selector
                 Destroy(child);
             }
         }
-
-        #endregion
-
-        #region Timer And Stars Mechanic
-
-        #endregion
-
-        #region Events Mechanic
 
         #endregion
     }

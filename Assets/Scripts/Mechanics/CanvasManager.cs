@@ -31,6 +31,7 @@ namespace Mechanics
         [SerializeField] private Button _challengeTutorialButton;
         [SerializeField] private Button _challengeTutorialButtonFinal;
         private bool isFirstTime = true;
+        [SerializeField] private StarInventory starInventory;
 
         private ChallengeSelector _challengeSelectorComponent;
 
@@ -83,6 +84,7 @@ namespace Mechanics
             {
                 if (isFirstTime)
                 {
+                    starInventory.ClearStars();
                     _challengeTutorialPanel.SetActive(true);
                     isFirstTime = false;
                 }

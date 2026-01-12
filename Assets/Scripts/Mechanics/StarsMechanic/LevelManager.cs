@@ -21,7 +21,7 @@ namespace Mechanics.StarsMechanic
 
         private void Start()
         {
-            VerifyToUpLevel();
+            starInventory.ClearStars();
             EventBus.Subscribe<OnChallengeCompleted>(HandleChallengeCompleted);
         }
 

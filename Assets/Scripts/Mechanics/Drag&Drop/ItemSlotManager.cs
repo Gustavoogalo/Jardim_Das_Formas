@@ -19,6 +19,11 @@ public class ItemSlotManager : MonoBehaviour
 
         if (sequenceManager != null)
         {
+            foreach (Transform child in spawnPoint)
+            {
+                Destroy(child.gameObject);
+            }
+            
             var uniqueFoods = sequenceManager.GetUniqueAvailableFoods();
             foreach (var foodData in uniqueFoods)
             {

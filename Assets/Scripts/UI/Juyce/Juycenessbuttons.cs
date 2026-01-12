@@ -1,4 +1,7 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -33,67 +36,69 @@ public class Juycenessbuttons : MonoBehaviour, ISelectHandler, IPointerEnterHand
         {
             layoutGroupToDisable = transform.parent?.GetComponent<HorizontalLayoutGroup>();
         }
-
-        initialScale = transform.localScale;
-        initialPosition = transform.localPosition;
     }
-    
+
     private void InitializeChildrenStates()
     {
         if (statesInitialized) return;
-
-        Transform[] allChildren = GetComponentsInChildren<Transform>(true);
-        Transform[] tempChildren;
         
-        if (allChildren.Length > 0)
-        {
-            tempChildren = new Transform[allChildren.Length - 1];
-            System.Array.Copy(allChildren, 1, tempChildren, 0, allChildren.Length - 1);
-        }
-        else
-        {
-            tempChildren = new Transform[0];
-        }
+        
+        List<Transform> validChildren = new List<Transform>();
+        //Transform[] allChildren = GetComponentsInChildren<Transform>(true);
 
-        childrenStates = new ChildState[tempChildren.Length];
-        for (int i = 0; i < tempChildren.Length; i++)
+        foreach (Transform child in transform)
+        {
+            validChildren.Add(child);
+        }
+        
+        // if (allChildren.Length > 0)
+        // {
+        //     tempChildren = new Transform[allChildren.Length - 1];
+        //     System.Array.Copy(allChildren, 1, tempChildren, 0, allChildren.Length - 1);
+        // }
+        // else
+        // {
+        //     tempChildren = new Transform[0];
+        // }
+
+        childrenStates = new ChildState[validChildren.Count];
+        for (int i = 0; i < validChildren.Count; i++)
         {
             childrenStates[i] = new ChildState
             {
-                transform = tempChildren[i],
-                initialScale = tempChildren[i].localScale,
-                initialPosition = tempChildren[i].localPosition
+                transform = validChildren[i],
+                initialScale = validChildren[i].localScale,
+                initialPosition = validChildren[i].localPosition
             };
         }
+
         statesInitialized = true;
     }
 
     private void Animate(bool enter)
     {
-        if (activeCoroutine != null)
-        {
-            StopCoroutine(activeCoroutine);
-        }
+        if (isHovering == enter) return;
+
+        if (activeCoroutine != null) StopCoroutine(activeCoroutine);
 
         isHovering = enter;
 
         if (enter)
         {
-            InitializeChildrenStates();
+            // statesInitialized = false;
+            // InitializeChildrenStates();
+            //
+            // transform.localScale = initialScale;
+            // transform.localPosition = initialPosition;
 
-            transform.localScale = initialScale;
-            transform.localPosition = initialPosition;
-            
-            if (isChallengeSelector && childrenStates != null)
+            if (isChallengeSelector)
             {
-                foreach (var state in childrenStates)
+                if (childrenStates == null || childrenStates.Any(s => s.transform == null))
                 {
-                    if (state.transform == null) continue;
-                    state.transform.localScale = state.initialScale;
-                    state.transform.localPosition = state.initialPosition;
+                    statesInitialized = false;
                 }
             }
-
+            InitializeChildrenStates();
             activeCoroutine = StartCoroutine(DoEnterAnimation());
         }
         else
@@ -151,7 +156,8 @@ public class Juycenessbuttons : MonoBehaviour, ISelectHandler, IPointerEnterHand
             foreach (var state in childrenStates)
             {
                 if (state.transform == null) continue;
-                StartCoroutine(LerpTransform(state.transform, state.initialScale, state.initialPosition, animationDuration));
+                StartCoroutine(LerpTransform(state.transform, state.initialScale, state.initialPosition,
+                    animationDuration));
             }
 
             yield return new WaitForSeconds(animationDuration);
@@ -159,7 +165,7 @@ public class Juycenessbuttons : MonoBehaviour, ISelectHandler, IPointerEnterHand
 
         transform.localScale = initialScale;
         transform.localPosition = initialPosition;
-        
+
         if (isChallengeSelector && childrenStates != null)
         {
             foreach (var state in childrenStates)
@@ -202,4 +208,35 @@ public class Juycenessbuttons : MonoBehaviour, ISelectHandler, IPointerEnterHand
     public void OnSelect(BaseEventData eventData) => Animate(true);
     public void OnPointerEnter(PointerEventData eventData) => Animate(true);
     public void OnPointerExit(PointerEventData eventData) => Animate(false);
+
+    private void OnEnable()
+    {
+        if (!statesInitialized)
+        {
+            transform.localScale = Vector3.one;
+        }
+        initialScale = transform.localScale;
+        initialPosition = transform.localPosition;
+    }
+
+    private void OnDisable()
+    {
+        if (activeCoroutine != null) StopCoroutine(activeCoroutine);
+
+        transform.localScale = initialScale;
+        transform.localPosition = initialPosition;
+
+        if (layoutGroupToDisable != null) layoutGroupToDisable.enabled = true;
+        if (isChallengeSelector && childrenStates != null)
+        {
+            foreach (var state in childrenStates)
+            {
+                if (state.transform != null)
+                {
+                    state.transform.localScale = state.initialScale;
+                    state.transform.localPosition = state.initialPosition;
+                }
+            }
+        }
+    }
 }

@@ -5,7 +5,9 @@ using Fase03_Scripts.Fruit;
 using Fase03_Scripts.Sun;
 using Fase03_Scripts.Trees;
 using Helper.EventBusFolder;
+using Unity.VisualScripting;
 using UnityEngine;
+using EventBus = Helper.EventBusFolder.EventBus;
 using Random = UnityEngine.Random;
 
 namespace Fase03_Scripts
@@ -19,10 +21,15 @@ namespace Fase03_Scripts
         [SerializeField] private Challenge03_Controller _challengeController;
         [SerializeField] private FruitsContainer[] _fruitContainers;
 
+      [SerializeField] private GameObject _lockedPanel;
+        private bool isUnlocked;
+        [SerializeField] private int level = 3;
+
         private void OnEnable()
         {
             EventBus.Subscribe<OnThirdLevelInitiateEvent>(InitializeChallenge);
             EventBus.Subscribe<OnPatternsGeneratedEvent>(OnPatternsReady);
+            EventBus.Subscribe<OnNextLevelEvent>(UnlockLevel);
         }
 
 
@@ -30,10 +37,21 @@ namespace Fase03_Scripts
         {
             EventBus.Unsubscribe<OnThirdLevelInitiateEvent>(InitializeChallenge);
             EventBus.Unsubscribe<OnPatternsGeneratedEvent>(OnPatternsReady);
+            EventBus.Unsubscribe<OnNextLevelEvent>(UnlockLevel);
         }
 
+        private void UnlockLevel(OnNextLevelEvent levelEvent)
+        {
+            if (levelEvent.Level == level && !isUnlocked)
+            {
+                isUnlocked = true;
+            }
+        }
         private void InitializeChallenge(OnThirdLevelInitiateEvent eventData)
         {
+            if (!isUnlocked) return;
+            if(_lockedPanel.activeSelf) _lockedPanel.SetActive(false);
+            
          _fruitBasketPatterns.Initialize();
          _challengeController.Initialize();
         }
