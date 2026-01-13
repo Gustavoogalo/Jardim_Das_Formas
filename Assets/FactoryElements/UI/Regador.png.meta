@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9f6e558d0f19d7642b77631eddac6bb7
+guid: 43f7e60b9f3982f409f4c643500d06cc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3893141973531030841
-    second: Container_0
+      213: -3935716550600654456
+    second: Regador_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Container_0
+      name: Regador_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 639
-        height: 163
+        x: 3
+        y: 12
+        width: 245
+        height: 171
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ca05877008c8f9c0800000000000000
-      internalID: -3893141973531030841
+      spriteID: 88182d846a68169c0800000000000000
+      internalID: -3935716550600654456
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Container_0: -3893141973531030841
+      Regador_0: -3935716550600654456
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

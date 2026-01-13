@@ -1,0 +1,1625 @@
+fileFormatVersion: 2
+guid: 94a91029a5c681140b79f0b8bfef4501
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4502518688865639641
+    second: solareado_0
+  - first:
+      213: -6035474275105252472
+    second: solareado_1
+  - first:
+      213: -479094426341031126
+    second: solareado_2
+  - first:
+      213: -797888756209041857
+    second: solareado_3
+  - first:
+      213: 3294070353492908199
+    second: solareado_4
+  - first:
+      213: 4310629872146484997
+    second: solareado_5
+  - first:
+      213: 5050885568964100255
+    second: solareado_6
+  - first:
+      213: -40496035576526486
+    second: solareado_7
+  - first:
+      213: 1571555034372488534
+    second: solareado_8
+  - first:
+      213: -1022204169671329691
+    second: solareado_9
+  - first:
+      213: -5171333128254238689
+    second: solareado_10
+  - first:
+      213: 9070205977422248274
+    second: solareado_11
+  - first:
+      213: 7623805133370623715
+    second: solareado_12
+  - first:
+      213: -4866821007259114783
+    second: solareado_13
+  - first:
+      213: -4399323534610590071
+    second: solareado_14
+  - first:
+      213: 2417785987172049138
+    second: solareado_15
+  - first:
+      213: -4849190246371704062
+    second: solareado_16
+  - first:
+      213: 4490725924442341549
+    second: solareado_17
+  - first:
+      213: -2537454372666010378
+    second: solareado_18
+  - first:
+      213: 3307584209558779368
+    second: solareado_19
+  - first:
+      213: -8867782597815641607
+    second: solareado_20
+  - first:
+      213: -8504307738966485198
+    second: solareado_21
+  - first:
+      213: 8984903540780576
+    second: solareado_22
+  - first:
+      213: 4469402128829823687
+    second: solareado_23
+  - first:
+      213: -6045292177504158918
+    second: solareado_24
+  - first:
+      213: -7763278494831536748
+    second: solareado_25
+  - first:
+      213: -8746266173183939792
+    second: solareado_26
+  - first:
+      213: 7232754425706088991
+    second: solareado_27
+  - first:
+      213: 2668638539150644907
+    second: solareado_28
+  - first:
+      213: 8253466872842544579
+    second: solareado_29
+  - first:
+      213: -2362321925883611876
+    second: solareado_30
+  - first:
+      213: -7869172219860793632
+    second: solareado_31
+  - first:
+      213: 4982699464558938800
+    second: solareado_32
+  - first:
+      213: -8473302633618473686
+    second: solareado_33
+  - first:
+      213: -1001576235191130408
+    second: solareado_34
+  - first:
+      213: 1891023991560847533
+    second: solareado_35
+  - first:
+      213: -7518456826347891514
+    second: solareado_36
+  - first:
+      213: 8739332876544031737
+    second: solareado_37
+  - first:
+      213: 2327561533750950088
+    second: solareado_38
+  - first:
+      213: 4005797433432975121
+    second: solareado_39
+  - first:
+      213: 3732763952074323501
+    second: solareado_40
+  - first:
+      213: 2355010238289557513
+    second: solareado_41
+  - first:
+      213: 6773586067996501274
+    second: solareado_42
+  - first:
+      213: -3728700719159870202
+    second: solareado_43
+  - first:
+      213: -7179647678374326195
+    second: solareado_44
+  - first:
+      213: -3379598475766576113
+    second: solareado_45
+  - first:
+      213: -3158281895097720181
+    second: solareado_46
+  - first:
+      213: -5917837816341514955
+    second: solareado_47
+  - first:
+      213: -1373246616386451505
+    second: solareado_48
+  - first:
+      213: 5438419253084429397
+    second: solareado_49
+  - first:
+      213: 5383641297259658586
+    second: solareado_50
+  - first:
+      213: 4130421175839370994
+    second: solareado_51
+  - first:
+      213: -3462691569843405090
+    second: solareado_52
+  - first:
+      213: -3886233183385249357
+    second: solareado_53
+  - first:
+      213: -8874245116192157352
+    second: solareado_54
+  - first:
+      213: -2089569806531441249
+    second: solareado_55
+  - first:
+      213: 8068752445940070530
+    second: solareado_56
+  - first:
+      213: -3924421966309546395
+    second: solareado_57
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: solareado_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1379
+        height: 1124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7232b9b9b17d381c0800000000000000
+      internalID: -4502518688865639641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_1
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 14
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88bd755cf10bd3ca0800000000000000
+      internalID: -6035474275105252472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_2
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 6
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23c218582ae959f0800000000000000
+      internalID: -479094426341031126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_3
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 8
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3eb1e357645de4f0800000000000000
+      internalID: -797888756209041857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_4
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 3
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a81715a883e6bd20800000000000000
+      internalID: 3294070353492908199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_5
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 1
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50f8a7fa70f62db30800000000000000
+      internalID: 4310629872146484997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_6
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 11
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f90804b0aa9581640800000000000000
+      internalID: 5050885568964100255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_7
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 10
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6946a8f111207ff0800000000000000
+      internalID: -40496035576526486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_8
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 0
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65dbfb03af84fc510800000000000000
+      internalID: 1571555034372488534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_9
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 0
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56831da39b660d1f0800000000000000
+      internalID: -1022204169671329691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_10
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 7
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1052333bebbb38b0800000000000000
+      internalID: -5171333128254238689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_11
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 6
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 259b0ebc748dfdd70800000000000000
+      internalID: 9070205977422248274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_12
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 14
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e60b5b40623dc960800000000000000
+      internalID: 7623805133370623715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_13
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 11
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e269e45414957cb0800000000000000
+      internalID: -4866821007259114783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_14
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 6
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 986158bcd8672f2c0800000000000000
+      internalID: -4399323534610590071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_15
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 10
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f0ae4c9b83bd8120800000000000000
+      internalID: 2417785987172049138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_16
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 3
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 203c9bcb92734bcb0800000000000000
+      internalID: -4849190246371704062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_17
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 9
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da006067f63425e30800000000000000
+      internalID: 4490725924442341549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_18
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 0
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f41b7b21b629ccd0800000000000000
+      internalID: -2537454372666010378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_19
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 0
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e531737056e6ed20800000000000000
+      internalID: 3307584209558779368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_20
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 7
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f9dec7f5be4fe480800000000000000
+      internalID: -8867782597815641607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_21
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 1
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2371c4e4b21aaf980800000000000000
+      internalID: -8504307738966485198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_22
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 4
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02ea3efd8bbef1000800000000000000
+      internalID: 8984903540780576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_23
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 12
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cab6476e81860e30800000000000000
+      internalID: 4469402128829823687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_24
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 2
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3bba6c3bceca1ca0800000000000000
+      internalID: -6045292177504158918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_25
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 10
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 495132f275b434490800000000000000
+      internalID: -7763278494831536748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_26
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 5
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03b2b5451450f9680800000000000000
+      internalID: -8746266173183939792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_27
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 12
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1a88d354d7ef5460800000000000000
+      internalID: 7232754425706088991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_28
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 6
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba6ddffbc98e80520800000000000000
+      internalID: 2668638539150644907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_29
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 12
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c5eb3164643a8270800000000000000
+      internalID: 8253466872842544579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_30
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 5
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c15379a79b8573fd0800000000000000
+      internalID: -2362321925883611876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_31
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 10
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e643d60f851bc290800000000000000
+      internalID: -7869172219860793632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_32
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 2
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ba809773ca162540800000000000000
+      internalID: 4982699464558938800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_33
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 4
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2df9c0f528c86a80800000000000000
+      internalID: -8473302633618473686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_34
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d6a5fd78bfa912f0800000000000000
+      internalID: -1001576235191130408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_35
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 13
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da0c9be1d444e3a10800000000000000
+      internalID: 1891023991560847533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_36
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 14
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c45c66d95319a790800000000000000
+      internalID: -7518456826347891514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_37
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 1
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fbbc40c2f8584970800000000000000
+      internalID: 8739332876544031737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_38
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 13
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c8b61c02e82d4020800000000000000
+      internalID: 2327561533750950088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_39
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 11
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 117a1f5ca83779730800000000000000
+      internalID: 4005797433432975121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_40
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 6
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d26f5c199017dc330800000000000000
+      internalID: 3732763952074323501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_41
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 0
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90838a7955daea020800000000000000
+      internalID: 2355010238289557513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_42
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 12
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a15677e04ac900e50800000000000000
+      internalID: 6773586067996501274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_43
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 10
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60d7bb0937ef04cc0800000000000000
+      internalID: -3728700719159870202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_44
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 3
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d405a06d974cc5c90800000000000000
+      internalID: -7179647678374326195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_45
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 9
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0c4b7897114911d0800000000000000
+      internalID: -3379598475766576113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_46
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 7
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b82272689578b24d0800000000000000
+      internalID: -3158281895097720181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_47
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 3
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 535379e2cdd9fdda0800000000000000
+      internalID: -5917837816341514955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_48
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 2
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc747496a7f31fce0800000000000000
+      internalID: -1373246616386451505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_49
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 13
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55c1eb72f75297b40800000000000000
+      internalID: 5438419253084429397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_50
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 7
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5df8417c3986ba40800000000000000
+      internalID: 5383641297259658586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_51
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 1
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fe28aeec24325930800000000000000
+      internalID: 4130421175839370994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_52
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 4
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ede7eb40d5c02ffc0800000000000000
+      internalID: -3462691569843405090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_53
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 0
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b99cf58283511ac0800000000000000
+      internalID: -3886233183385249357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_54
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 10
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8511f97a51958d480800000000000000
+      internalID: -8874245116192157352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_55
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 1
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9dcf4cf45b5003e0800000000000000
+      internalID: -2089569806531441249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_56
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 12
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28872d87997f9ff60800000000000000
+      internalID: 8068752445940070530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solareado_57
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 9
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 566216d9307a989c0800000000000000
+      internalID: -3924421966309546395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      solareado_0: -4502518688865639641
+      solareado_1: -6035474275105252472
+      solareado_10: -5171333128254238689
+      solareado_11: 9070205977422248274
+      solareado_12: 7623805133370623715
+      solareado_13: -4866821007259114783
+      solareado_14: -4399323534610590071
+      solareado_15: 2417785987172049138
+      solareado_16: -4849190246371704062
+      solareado_17: 4490725924442341549
+      solareado_18: -2537454372666010378
+      solareado_19: 3307584209558779368
+      solareado_2: -479094426341031126
+      solareado_20: -8867782597815641607
+      solareado_21: -8504307738966485198
+      solareado_22: 8984903540780576
+      solareado_23: 4469402128829823687
+      solareado_24: -6045292177504158918
+      solareado_25: -7763278494831536748
+      solareado_26: -8746266173183939792
+      solareado_27: 7232754425706088991
+      solareado_28: 2668638539150644907
+      solareado_29: 8253466872842544579
+      solareado_3: -797888756209041857
+      solareado_30: -2362321925883611876
+      solareado_31: -7869172219860793632
+      solareado_32: 4982699464558938800
+      solareado_33: -8473302633618473686
+      solareado_34: -1001576235191130408
+      solareado_35: 1891023991560847533
+      solareado_36: -7518456826347891514
+      solareado_37: 8739332876544031737
+      solareado_38: 2327561533750950088
+      solareado_39: 4005797433432975121
+      solareado_4: 3294070353492908199
+      solareado_40: 3732763952074323501
+      solareado_41: 2355010238289557513
+      solareado_42: 6773586067996501274
+      solareado_43: -3728700719159870202
+      solareado_44: -7179647678374326195
+      solareado_45: -3379598475766576113
+      solareado_46: -3158281895097720181
+      solareado_47: -5917837816341514955
+      solareado_48: -1373246616386451505
+      solareado_49: 5438419253084429397
+      solareado_5: 4310629872146484997
+      solareado_50: 5383641297259658586
+      solareado_51: 4130421175839370994
+      solareado_52: -3462691569843405090
+      solareado_53: -3886233183385249357
+      solareado_54: -8874245116192157352
+      solareado_55: -2089569806531441249
+      solareado_56: 8068752445940070530
+      solareado_57: -3924421966309546395
+      solareado_6: 5050885568964100255
+      solareado_7: -40496035576526486
+      solareado_8: 1571555034372488534
+      solareado_9: -1022204169671329691
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
