@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: e82545ec40ce80245bd3e16ad74be53a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6151173239344598684
+    second: Lv2_Container_0
+  - first:
+      213: 6526094064495761615
+    second: Lv2_Container_1
+  - first:
+      213: 2086911718413313895
+    second: Lv2_Container_2
+  - first:
+      213: 4759571240328157388
+    second: Lv2_Container_3
+  - first:
+      213: -95574956673772886
+    second: Lv2_Container_4
+  - first:
+      213: -5052629579507151325
+    second: Lv2_Container_5
+  - first:
+      213: 7108124451541211655
+    second: Lv2_Container_6
+  - first:
+      213: 8893932873765099197
+    second: Lv2_Container_7
+  - first:
+      213: 1894870816950885009
+    second: Lv2_Container_8
+  - first:
+      213: 7917205709626140526
+    second: Lv2_Container_9
+  - first:
+      213: 856432851117107718
+    second: Lv2_Container_10
+  - first:
+      213: 3170168322505092601
+    second: Lv2_Container_11
+  - first:
+      213: 8693976322792317604
+    second: Lv2_Container_12
+  - first:
+      213: 491945323573840827
+    second: Lv2_Container_13
+  - first:
+      213: 5985110197285615990
+    second: Lv2_Container_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Lv2_Container_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 342
+        width: 162
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9e060b887b5d5550800000000000000
+      internalID: 6151173239344598684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_1
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 342
+        width: 162
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc81e0599f7519a50800000000000000
+      internalID: 6526094064495761615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_2
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 342
+        width: 163
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76720a5a62336fc10800000000000000
+      internalID: 2086911718413313895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_3
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 342
+        width: 162
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc8dce663d46d0240800000000000000
+      internalID: 4759571240328157388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_4
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 342
+        width: 162
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa2590255137caef0800000000000000
+      internalID: -95574956673772886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_5
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 171
+        width: 162
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32e48dbda2471e9b0800000000000000
+      internalID: -5052629579507151325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_6
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 171
+        width: 162
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70ad169378125a260800000000000000
+      internalID: 7108124451541211655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_7
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 171
+        width: 163
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db610fc93d89d6b70800000000000000
+      internalID: 8893932873765099197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_8
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 171
+        width: 162
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19a9c93f7feeb4a10800000000000000
+      internalID: 1894870816950885009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_9
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 171
+        width: 162
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e67e5ff45a09fdd60800000000000000
+      internalID: 7917205709626140526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_10
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 0
+        width: 162
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60a6fc8f329a2eb00800000000000000
+      internalID: 856432851117107718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_11
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 0
+        width: 162
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fdac150b43befb20800000000000000
+      internalID: 3170168322505092601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_12
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 163
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a261b5276537a870800000000000000
+      internalID: 8693976322792317604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_13
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 0
+        width: 162
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbb88845aadb3d600800000000000000
+      internalID: 491945323573840827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv2_Container_14
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 0
+        width: 162
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 679f6c293026f0350800000000000000
+      internalID: 5985110197285615990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Lv2_Container_0: 6151173239344598684
+      Lv2_Container_1: 6526094064495761615
+      Lv2_Container_10: 856432851117107718
+      Lv2_Container_11: 3170168322505092601
+      Lv2_Container_12: 8693976322792317604
+      Lv2_Container_13: 491945323573840827
+      Lv2_Container_14: 5985110197285615990
+      Lv2_Container_2: 2086911718413313895
+      Lv2_Container_3: 4759571240328157388
+      Lv2_Container_4: -95574956673772886
+      Lv2_Container_5: -5052629579507151325
+      Lv2_Container_6: 7108124451541211655
+      Lv2_Container_7: 8893932873765099197
+      Lv2_Container_8: 1894870816950885009
+      Lv2_Container_9: 7917205709626140526
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
