@@ -6830,15 +6830,15 @@ MonoBehaviour:
   - {fileID: 887942290}
   availableFoodData:
   - type: 1
-    seedPacketSprite: {fileID: -2239651185886256894, guid: 89648c95fde3a504290ad81a55e09d7b, type: 3}
+    seedPacketSprite: {fileID: 21300000, guid: 721b2f9426ed6d04582e583bf9940256, type: 3}
     seedStageSprite: {fileID: 21300000, guid: 6f16c17398bb6fd42b9c6072ca10fd73, type: 3}
     grownStageSprite: {fileID: 21300000, guid: 55553e17eeab8b349a478ddc5b695c3b, type: 3}
   - type: 2
-    seedPacketSprite: {fileID: 7510669779659200231, guid: 47e1d13692cf68c4d996f36cf465c7f3, type: 3}
+    seedPacketSprite: {fileID: 21300000, guid: 6e92d663f2e7d5c438f509b2874ece82, type: 3}
     seedStageSprite: {fileID: 21300000, guid: 6f16c17398bb6fd42b9c6072ca10fd73, type: 3}
     grownStageSprite: {fileID: 21300000, guid: 4211123d598261b4ab3743fd80f16599, type: 3}
   - type: 3
-    seedPacketSprite: {fileID: 3132427565777881236, guid: 5ce2bd540c85c9d4d83830715c7480b3, type: 3}
+    seedPacketSprite: {fileID: 21300000, guid: 4dbba84b3df2e634ba910c0cac8eaa47, type: 3}
     seedStageSprite: {fileID: 21300000, guid: 6f16c17398bb6fd42b9c6072ca10fd73, type: 3}
     grownStageSprite: {fileID: 21300000, guid: 7c7f12f3f842a9948bbaf026c70ad26e, type: 3}
   plantPrefab: {fileID: 982319527789624683, guid: fe28581719e9b1f4cbfb3ec38b5b6108, type: 3}
@@ -9038,7 +9038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &862709110
 RectTransform:
   m_ObjectHideFlags: 0

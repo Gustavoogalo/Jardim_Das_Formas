@@ -100,6 +100,12 @@ public class SequenceManager : MonoBehaviour
         foreach (var plant in referenceSequence)
         {
             GameObject newPlant = InstantiatePlant(plant, _sequenceContainer);
+            IconFoodData data = GetFoodDataFromType(plant);
+            if (newPlant.TryGetComponent<FoodPlantController>(out var plantController))
+            {
+                plantController.Initialize(null, plant, data);
+                plantController.SetVisualToGrown();
+            }
         }
     }
     
