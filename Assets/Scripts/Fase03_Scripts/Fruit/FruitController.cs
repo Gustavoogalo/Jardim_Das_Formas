@@ -80,6 +80,7 @@ namespace Fase03_Scripts.Fruit
         [SerializeField] private List<SizeConfig> _sizeConfigs;
         [SerializeField] private List<ColorConfig> _colorConfigs;
 
+        public GameObject fruitImageSuccess;
 
         private Vector3 _originalTreePos;
         

@@ -16,6 +16,11 @@ namespace Fase03_Scripts
 {
     public class Challenge03_Manager : MonoBehaviour
     {
+        [SerializeField] private GameObject _TutorialFase03;
+        [SerializeField] private Button _JumpTutorial;
+        [SerializeField] private Button _FinalButtonTutorial;
+        [SerializeField] private GameObject _NavigationSetas;
+        
         [SerializeField] private FruitBasketPatterns _fruitBasketPatterns;
         [SerializeField] private Challenge03_Controller _challengeController;
         [SerializeField] private FruitsContainer[] _fruitContainers;
@@ -55,11 +60,22 @@ namespace Fase03_Scripts
         {
             if (!isUnlocked) return;
             if (_lockedPanel.activeSelf) _lockedPanel.SetActive(false);
+            
+            _TutorialFase03.SetActive(true);
+            _NavigationSetas.SetActive(false);
+            _FinalButtonTutorial.onClick.AddListener(OnFinalizeTutorialFase03);
+            _JumpTutorial.onClick.AddListener(OnFinalizeTutorialFase03);
 
             _fruitBasketPatterns.Initialize();
             _challengeController.Initialize();
         }
 
+        public void OnFinalizeTutorialFase03()
+        {
+            _TutorialFase03.SetActive(false);
+            _NavigationSetas.SetActive(true);
+        }
+        
         private void OnPatternsReady(OnPatternsGeneratedEvent eventData)
         {
             List<FruitController> availablePatterns = new List<FruitController>(eventData.patterns);

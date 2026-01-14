@@ -35,6 +35,8 @@ namespace Mechanics
 
         private ChallengeSelector _challengeSelectorComponent;
 
+        [SerializeField] private GameObject NavigationSetas;
+
         private void Start()
         {
             maxFarms = farmManager.Length;
@@ -86,6 +88,7 @@ namespace Mechanics
                 {
                     starInventory.ClearStars();
                     _challengeTutorialPanel.SetActive(true);
+                    NavigationSetas.SetActive(false);
                     isFirstTime = false;
                 }
                 else
@@ -101,6 +104,7 @@ namespace Mechanics
             if (_challengeSelectorComponent != null)
             {
                 _challengeTutorialPanel.SetActive(false);
+                NavigationSetas.SetActive(true);
                 _challengeSelectorComponent.SetChallengeCriteriaAndStart(isType, isColor, isSize);
 
                 _challengePanel.OpenPanel();

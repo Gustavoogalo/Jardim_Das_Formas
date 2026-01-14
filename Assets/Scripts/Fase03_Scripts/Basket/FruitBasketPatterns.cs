@@ -66,7 +66,8 @@ namespace Fase03_Scripts.Basket
             {
                 if (img.color.a < 1f)
                 {
-                img.color = new Color(img.color.r, img.color.g, img.color.b, 1f);
+                img.color = new Color(img.color.r, img.color.g, img.color.b, 255f);
+                pattern.fruitImageSuccess.SetActive(true);
                 _correctFruitsCount++;
                 }
             }

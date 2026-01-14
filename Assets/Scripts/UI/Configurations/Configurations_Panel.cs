@@ -11,7 +11,7 @@ namespace UI.Configurations
         // Arraste o seu painel de UI para este campo no Inspector.
         [SerializeField] private GameObject pausePanel;
 
-        [SerializeField] private Button pauseButton;
+        [SerializeField] private Button[] pauseButton;
         [SerializeField] private Button resumeButton;
         [SerializeField] private Button toMenuButton;
 
@@ -22,11 +22,12 @@ namespace UI.Configurations
         [SerializeField] private Button toggleAudio;
 
         [SerializeField] private GameObject configPanel;
-        
-        [Header("Audio Settings")] 
-        [SerializeField] private Sprite audioOn;
+
+        [Header("Audio Settings")] [SerializeField]
+        private Sprite audioOn;
+
         [SerializeField] private Sprite audioOff;
-        
+
         private bool isPaused = false;
 
         void Start()
@@ -44,13 +45,16 @@ namespace UI.Configurations
             {
             }
 
-            pauseButton.onClick.AddListener(TogglePause);
+            foreach (var button in pauseButton)
+            {
+                button.onClick.AddListener(TogglePause);
+            }
+
             resumeButton.onClick.AddListener(TogglePause);
             toMenuButton.onClick.AddListener(BackToMenu);
-            
+
             openConfig.onClick.AddListener(OpenConfig);
             closeConfig.onClick.AddListener(CloseConfig);
-            
         }
 
         public void TogglePause()
@@ -93,15 +97,12 @@ namespace UI.Configurations
 
         private void ToggleAudio()
         {
-            
-            
         }
 
         private void UpdateAudioIcon()
         {
-            
         }
-        
+
         public void BackToMenu()
         {
             SceneManager.LoadScene(0);
