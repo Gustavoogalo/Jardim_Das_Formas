@@ -17,17 +17,12 @@ namespace UI.Configurations
 
         [Header("Configuracoes Settings")] [SerializeField]
         private Button openConfig;
+        [SerializeField] private Slider musicVolumeSlider, sfxVolumeSlider;
 
         [SerializeField] private Button closeConfig;
-        [SerializeField] private Button toggleAudio;
 
         [SerializeField] private GameObject configPanel;
-
-        [Header("Audio Settings")] [SerializeField]
-        private Sprite audioOn;
-
-        [SerializeField] private Sprite audioOff;
-
+        
         private bool isPaused = false;
 
         void Start()
@@ -49,6 +44,7 @@ namespace UI.Configurations
             {
                 button.onClick.AddListener(TogglePause);
             }
+            SetupSliders();
 
             resumeButton.onClick.AddListener(TogglePause);
             toMenuButton.onClick.AddListener(BackToMenu);
@@ -95,8 +91,13 @@ namespace UI.Configurations
             configPanel.SetActive(false);
         }
 
-        private void ToggleAudio()
+        private void SetupSliders()
         {
+            musicVolumeSlider.value = SoundManager.Instance.GetMusicVolume();
+            sfxVolumeSlider.value = SoundManager.Instance.GetSFXVolume();
+
+            musicVolumeSlider.onValueChanged.AddListener(SoundManager.Instance.ChangeMusicVolume);
+            sfxVolumeSlider.onValueChanged.AddListener(SoundManager.Instance.ChangeSFXVolume);
         }
 
         private void UpdateAudioIcon()

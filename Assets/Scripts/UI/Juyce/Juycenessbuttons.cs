@@ -85,11 +85,11 @@ public class Juycenessbuttons : MonoBehaviour, ISelectHandler, IPointerEnterHand
 
         if (enter)
         {
-            // statesInitialized = false;
-            // InitializeChildrenStates();
-            //
-            // transform.localScale = initialScale;
-            // transform.localPosition = initialPosition;
+            statesInitialized = false;
+            InitializeChildrenStates();
+            
+            transform.localScale = initialScale;
+            transform.localPosition = initialPosition;
 
             if (isChallengeSelector)
             {

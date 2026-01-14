@@ -7,39 +7,45 @@ using UnityEngine.InputSystem;
 
 public class Menu : MonoBehaviour
 {
-    [Header("Pre Start Settings")]
+    [Header("Pre Start Settings")] [SerializeField]
+    private Button jumpPreStart;
+
     [SerializeField] private GameObject preStartPanel;
     [SerializeField] private CanvasGroup preStartCG; // Para o FadeOut
     private bool inPreStart = true;
 
-    [Header("Main Panel")]
-    [SerializeField] private GameObject startPanel;
+    [Header("Main Panel")] [SerializeField]
+    private GameObject startPanel;
+
     [SerializeField] private Button playButton, configButton, creditsButton, endButton;
 
-    [Header("Config Panel")]
-    [SerializeField] private GameObject configPanel;
+    [Header("Config Panel")] [SerializeField]
+    private GameObject configPanel;
+
     [SerializeField] private Button closeConfig;
     [SerializeField] private Slider musicVolumeSlider, sfxVolumeSlider;
 
-    [Header("Credits Panel")]
-    [SerializeField] private GameObject creditsPanel;
+    [Header("Credits Panel")] [SerializeField]
+    private GameObject creditsPanel;
+
     [SerializeField] private Button closeCredits;
 
-    [Header("End Panel")]
-    [SerializeField] private GameObject endPanel;
+    [Header("End Panel")] [SerializeField] private GameObject endPanel;
     [SerializeField] private Button closeEnd, quitButton;
 
-    [Header("Loading Screen")]
-    [SerializeField] private GameObject loadingPanel;
+    [Header("Loading Screen")] [SerializeField]
+    private GameObject loadingPanel;
+
     [SerializeField] private TextMeshProUGUI loadingText;
 
     void Start()
     {
+        Time.timeScale = 1;
         SoundManager.Instance.PlayMusic("MenuMusic", true);
-        
+
         SetupButtons();
         SetupSliders();
-        
+
         // Estado inicial
         preStartPanel.SetActive(true);
         startPanel.SetActive(true);
@@ -65,16 +71,55 @@ public class Menu : MonoBehaviour
     private void SetupButtons()
     {
         // Positive SFX (Abre telas)
-        playButton.onClick.AddListener(() => { PlayPositive(); StartCoroutine(LoadLevelCoroutine()); });
-        configButton.onClick.AddListener(() => { PlayPositive(); configPanel.SetActive(true); });
-        creditsButton.onClick.AddListener(() => { PlayPositive(); creditsPanel.SetActive(true); });
-        endButton.onClick.AddListener(() => { PlayPositive(); endPanel.SetActive(true); });
+        playButton.gameObject.SetActive(true);
+        configButton.gameObject.SetActive(true);
+        creditsButton.gameObject.SetActive(true);
+        endButton.gameObject.SetActive(true);
+
+        jumpPreStart.onClick.AddListener(() =>
+        {
+            PlayPositive();
+            preStartPanel.SetActive(false);
+        });
+
+        playButton.onClick.AddListener(() =>
+        {
+            PlayPositive();
+            StartCoroutine(LoadLevelCoroutine());
+        });
+        configButton.onClick.AddListener(() =>
+        {
+            PlayPositive();
+            configPanel.SetActive(true);
+        });
+        creditsButton.onClick.AddListener(() =>
+        {
+            PlayPositive();
+            creditsPanel.SetActive(true);
+        });
+        endButton.onClick.AddListener(() =>
+        {
+            PlayPositive();
+            endPanel.SetActive(true);
+        });
 
         // Negative SFX (Fecha telas/Volta)
-        closeConfig.onClick.AddListener(() => { PlayNegative(); configPanel.SetActive(false); });
-        closeCredits.onClick.AddListener(() => { PlayNegative(); creditsPanel.SetActive(false); });
-        closeEnd.onClick.AddListener(() => { PlayNegative(); endPanel.SetActive(false); });
-        
+        closeConfig.onClick.AddListener(() =>
+        {
+            PlayNegative();
+            configPanel.SetActive(false);
+        });
+        closeCredits.onClick.AddListener(() =>
+        {
+            PlayNegative();
+            creditsPanel.SetActive(false);
+        });
+        closeEnd.onClick.AddListener(() =>
+        {
+            PlayNegative();
+            endPanel.SetActive(false);
+        });
+
         quitButton.onClick.AddListener(QuitGame);
     }
 
@@ -110,13 +155,13 @@ public class Menu : MonoBehaviour
         PlayPositive();
     }
 
-    IEnumerator LoadLevelCoroutine()
+    private IEnumerator LoadLevelCoroutine()
     {
         loadingPanel.SetActive(true);
         loadingText.text = "Carregando...";
-        
+
         yield return new WaitForSeconds(2.0f);
-        
+
         // Carrega a próxima cena pelo index
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
@@ -126,5 +171,6 @@ public class Menu : MonoBehaviour
         Debug.Log("Saindo do Jogo...");
         Application.Quit();
     }
+
     #endregion
 }
